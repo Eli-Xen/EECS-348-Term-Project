@@ -1,0 +1,14 @@
+9/12 Minutes
+
+Met in-person at Anschutz Library.
+Daniel, Eliza, Tyler, and Lillian were in attendance.
+Max and Johnny were not present.
+
+Before the meeting, Lillian volunteered to take meeting logs.
+Eliza volunteered to be project manager. 
+Members discussed their experience with C and C++: Eliza has the most experience with C++. 
+Members discussed potential meeting times: it was agreed upon to meet every Tuesday in Anschutz at 12:15-12:50, with additional calls as necessary at nights on Discord.
+Members discussed how to organize the Discord: Daniel decided to make a Discord server with different channels. Members then discussed the organization of the different channels.
+Eliza attempted to reach out to Max on multiple occasions via email and social media with no response, so she contacted the lab TAs for assistance with communication.
+Eliza created a Github repository for the term project and invited members.
+Members discussed how to fill out the Software Development Plan. It was decided that the project manager will not solely be responsible for filling out the plan; instead, responsibility will be divided evenly amongst the members.
