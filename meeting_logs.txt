@@ -12,3 +12,18 @@ Members discussed how to organize the Discord: Daniel decided to make a Discord 
 Eliza attempted to reach out to Max on multiple occasions via email and social media with no response, so she contacted the lab TAs for assistance with communication.
 Eliza created a Github repository for the term project and invited members.
 Members discussed how to fill out the Software Development Plan. It was decided that the project manager will not solely be responsible for filling out the plan; instead, responsibility will be divided evenly amongst the members.
+
+9/17 Minutes
+
+Met in-person at Anschutz Library.
+Tyler, Lillian, Johnny, Daniel, and Eliza were present.
+Max was not present.
+Meeting agenda: figure out another meeting time that works for all members, and complete section 1.4 of the SDP document.
+
+Daniel had a question about filling out Section 1.3 of the SDP document, since it seemed like a section that would best be filled out after completion of the document. Eliza agreed that would be fine.
+The members discussed section 1.4, and if we needed to create the listed project artifacts. Eliza decided to email the lab TAs for clarification. Lillian volunteered to fill out section 1.4.
+Members discussed the definition of “constraints” as described in the SDP document, agreeing that they should be aligned to Saidiaen’s definition in his lecture slides.
+Members discussed the incremental nature of the SDP document and the difficulty of the semester-long project. Roles will be assigned when the need arises as the project goes on.
+Members discussed how to increase knowledge of C++: using John Gibbons’s videos, or online classes.
+Members discussed availability for Discord calls. It was decided upon to meet at Fridays at 8pm on Discord to work on the project, whereas the Tuesday in-person meetings would be more for logistics and planning.
+Members discussed the Ren Faire and how to use Discord meetings.
