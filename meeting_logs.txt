@@ -27,3 +27,6 @@ Members discussed the incremental nature of the SDP document and the difficulty 
 Members discussed how to increase knowledge of C++: using John Gibbons’s videos, or online classes.
 Members discussed availability for Discord calls. It was decided upon to meet at Fridays at 8pm on Discord to work on the project, whereas the Tuesday in-person meetings would be more for logistics and planning.
 Members discussed the Ren Faire and how to use Discord meetings.
+Eliza and Johnny discussed Gant charts, and how to create them. It was decided to ask the lab TA’s about the necessity of implementing a Gant chart.
+It was decided to meet this Friday online. 
+Eliza announced that she will assign sections in the Discord server later today. If members had preferences for which section they’d like to fill out, they can state that in the Discord General channel.
