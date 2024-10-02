@@ -1,0 +1,63 @@
+9/12 Minutes
+
+Met in-person at Anschutz Library.
+Daniel, Eliza, Tyler, and Lillian were in attendance.
+Max and Johney were not present.
+
+Before the meeting, Lillian volunteered to take meeting logs.
+Eliza volunteered to be project manager. 
+Members discussed their experience with C and C++: Eliza has the most experience with C++. 
+Members discussed potential meeting times: it was agreed upon to meet every Tuesday in Anschutz at 12:15-12:50, with additional calls as necessary at nights on Discord.
+Members discussed how to organize the Discord: Daniel decided to make a Discord server with different channels. Members then discussed the organization of the different channels.
+Eliza attempted to reach out to Max on multiple occasions via email and social media with no response, so she contacted the lab TAs for assistance with communication.
+Eliza created a Github repository for the term project and invited members.
+Members discussed how to fill out the Software Development Plan. It was decided that the project manager will not solely be responsible for filling out the plan; instead, responsibility will be divided evenly amongst the members.
+
+
+9/17 Minutes
+
+Met in-person at Anschutz Library.
+Tyler, Lillian, Johney, Daniel, and Eliza were present.
+Max was not present.
+Meeting agenda: figure out another meeting time that works for all members, and complete section 1.4 of the SDP document.
+
+Daniel had a question about filling out Section 1.3 of the SDP document, since it seemed like a section that would best be filled out after completion of the document. Eliza agreed that would be fine.
+The members discussed section 1.4, and if we needed to create the listed project artifacts. Eliza decided to email the lab TAs for clarification. Lillian volunteered to fill out section 1.4.
+Members discussed the definition of “constraints” as described in the SDP document, agreeing that they should be aligned to Dr. Saiedian’s definition in his lecture slides.
+Members discussed the incremental nature of the SDP document and the difficulty of the semester-long project. Roles will be assigned when the need arises as the project goes on.
+Members discussed how to increase knowledge of C++: using Dr. John Gibbons’s videos, or online classes.
+Members discussed availability for Discord calls. It was decided upon to meet at Fridays at 8pm on Discord to work on the project, whereas the Tuesday in-person meetings would be more for logistics and planning.
+Members discussed the Ren Faire and how to use Discord meetings.
+Eliza and Johney discussed Gant charts, and how to create them. It was decided to ask the lab TA’s about the necessity of implementing a Gant chart.
+It was decided to meet this Friday online. 
+Eliza announced that she will assign sections in the Discord server later today. If members had preferences for which section they’d like to fill out, they can state that in the Discord General channel.
+
+9/20 Minutes
+
+Met on a Discord call.
+Tyler, Lillian, Johney, Daniel, Max, and Eliza were present.
+Members discussed their various sections that they were assigned to fill out.
+Lillian asked if references to “Vision Statement” and “Iteration Plans” should be deleted, since a GTA said it was not necessary to create either of those project artifacts. It was decided to delete these references throughout the document. 
+Members discussed a timeline for completing the SDP, as well as the various sections of the SDP.
+Members decided that the SDP should be written in third person, and all the optional sections highlighted in yellow should be completed if possible/relevant to the current project.
+
+9/24 Minutes
+
+Met in-person at Anschutz Library.
+Daniel, Eliza, Tyler, and Lillian were in attendance.
+Max and Johney were not present.
+Eliza discussed how to push the SDP to github. She created an “artifacts” branch in the repo, and after Friday’s meeting, she will push the completed SDP to the artifacts branch as a pdf. 
+Eliza decided that in-person meetings will be required if possible and the online ones will be optional (except if in-person ones aren’t attended). 
+Project members went through the entire SDP document and made necessary edits, finding the places that still needed to be completed. Eliza assigned unfinished sections to members.
+
+10/1 Minutes
+
+Met in-person at Anschutz Library.
+Daniel, Eliza, Tyler, and Lillian were in attendance.
+Max and Johney were not present.
+Eliza assigned sections of the SRS to group members. It was decided to assign 1.3 to the whole group and leave it to the end of the project.
+Small edits were made to the SDP; a new version needs to be pushed to the repo.
+2.2- functionality of the program (operators, parentheses)
+2.3/2.1- are users human?
+Daniel reminded members that midterms are coming up, so completing the SRS may require stricter deadlines due to the frantic nature of midterms and the shortened timespan to complete the SRS.
+Members discussed Big Jay and free food in front of Wescoe. It was decided to adjourn early to scope out free food (team-building activity).
