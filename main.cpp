@@ -15,6 +15,23 @@ private:
 public:
 	//makes first call to input processor class
 	string callInput();
+	//Method for getting the user input from terminal
+	string getInput();
+
+	//Setters for string varables
+	void setCleanInput(string data){
+		cleanInput = data;
+	}
+	void setUncleanInput(string data){
+		uncleanInput = data;
+	}
+	//Getters for string varables
+	string getCleanInput(){
+		return cleanInput;
+	}
+	string getUncleanInput(){
+		return uncleanInput;
+	}
 
 };
 
@@ -36,31 +53,15 @@ string Main::callInput() //edit this to call class InputProcessor
 }
 
 string Main::getInput(){
-	
+	//Ask user for input
 	cout << "Enter expression: ";
 	string tempStorage;
 	getline(cin, tempStorage);
+	//Use setter to set private varable
 	setUncleanInput(tempStorage);
 	//If we are just sending raw data to the inputProcessor I think this is enough 
 	
-	// some of this code is reusable so 
-	istringstream iss(mat_str);
-	int x;
-	int row_num = 0;
-	int col_num = 0;
-	while (iss >> x) {
-		if (row_num >= SIZE) {
-			// if input size is too large, return
-			return;
-		}
-		setMatrixElement(row_num, col_num, x);
-		col_num++;
-		if (col_num == SIZE) {
-			//iterates 1 through (SIZE-1) for both column and row
-			col_num = 0;
-			row_num++;
-		}
-	}
+	
 }
 
 int InputProcessor::cleanInput(string) {
