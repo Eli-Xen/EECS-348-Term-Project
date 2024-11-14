@@ -37,7 +37,7 @@ public:
 
 
 
-void main()
+int main()
 {
 	Main start; //starts the program 
 	start.callInput();
