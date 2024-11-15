@@ -12,7 +12,7 @@ private:
 	string uncleanInput;
 
 public:
-	// 1. Read values from stdin into a matrix
+	// 1. Read values from stdin into a private variable uncleanInput
 	string getInput();
 
 	// 2. Clean input str
