@@ -2,7 +2,7 @@
 #include <string>
 #include <sstream>
 
-#include "InputProcessor.h" //header file for this file
+#include "inputProcessor.h" //header file for this file
 using namespace std;
 
 class InputProcessor {
