@@ -8,7 +8,7 @@ using namespace std;
 class InputProcessor
 {
 private:
-  extern string uncleanInput;
+	string uncleanInput;
 public: 
 	string getInput();
 	int cleanInput(string);
