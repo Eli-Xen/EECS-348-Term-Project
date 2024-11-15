@@ -1,5 +1,6 @@
-#ifndef INPUTPROCESSOR_H 
-#define INPUTPROCESSOR_H 
+//include gaurds 
+#ifndef INPUTPROCESSOR_H //checks if INPUTPROCESSOR_H has alrdy been defined, if true then this file will be skipped 
+#define INPUTPROCESSOR_H //starts defenition for header file 
 
 #include <string> //so we can return strings from functions 
 using namespace std;
@@ -15,4 +16,4 @@ public:
 	void setUncleanInput(string data); //setter 
 	string getUncleanInput(); //getter
 }; 
-#endif
+#endif //ends defenition of header file 
