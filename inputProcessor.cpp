@@ -8,7 +8,7 @@ using namespace std;
 class InputProcessor {
 private:
 	//put the string in here
-    //Varable to store the input from terminal
+        //Varable to store the input from terminal
 	string uncleanInput;
 
 public:
@@ -16,19 +16,17 @@ public:
 	string getInput();
 
 	// 2. Clean input str
-	int cleanInput(string);
+	void cleanInput();
 
 	// 3. Check input str
-	int checkInput(string);
-
-	//getter (defined in class)
+	int checkInput();
 
 	//setter (defined in class)
 
 	void setUncleanInput(string data){
 		uncleanInput = data;
 	}
-	//Getters for string varables
+	//getter (defined in class)
 	string getUncleanInput(){
 		return uncleanInput;
 	}
@@ -42,14 +40,34 @@ string InputProcessor::getInput(){
 	getline(cin, tempStorage);
 	//Use setter to set private varable
 	setUncleanInput(tempStorage);
+	cleanInput();
 }
 
-int InputProcessor::cleanInput(string) {
-	
+void InputProcessor::cleanInput() {
+	//gets the str
+	string tempStorage = getUncleanInput();
+	string cleanInput;
+	//cleans it of whitespace
+	for (int i = 0; i < tempStorage.length(); i++) {
+		if (tempStorage[i] == " ")
+			continue;
+		cleanInput.append(tempStorage[i]);
+	}
+	//assigns the cleaned value to the "uncleaned input" member var- 
+	//should we rename that or make a new var?
+	setUncleanInput(cleanInput);
 }
 
-int InputProcessor::checkInput(string){
-	
+int InputProcessor::checkInput(){
+	string tempStorage = getUncleanInput();
+	if (tempStorage == "q") || (tempStorage == "Q")
+		return -1;
+	for (int i = 0; i < (tempStorage.length() - 1); i++) {
+		//trying to convert to ascii this might not work
+		if int(tempStorage[i]) 
+
+	}
+	return 0;
 }
 
 
