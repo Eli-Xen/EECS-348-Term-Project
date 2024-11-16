@@ -22,7 +22,6 @@ public:
 	int checkInput();
 
 	//setter (defined in class)
-
 	void setUncleanInput(string data){
 		uncleanInput = data;
 	}
@@ -60,15 +59,17 @@ void InputProcessor::cleanInput() {
 
 int InputProcessor::checkInput(){
 	string tempStorage = getUncleanInput();
-	if (tempStorage == "q") || (tempStorage == "Q")
-		return -1;
+	if (tempStorage == "q") || (tempStorage == "Q") //to quit program
+		return -1; //sends to getInput function and returns to main to indicate quit 
 	for (int i = 0; i < (tempStorage.length() - 1); i++) {
 		//trying to convert to ascii this might not work if str slicing is not type char
 		if (36 < int(tempStorage[i]) < 58) {
 			//means its either a number or mostly valid numerical chars
 			if (tempStorage[i] != "'" && tempStorage[i] != "," && tempStorage[i] != "-") {
 				//chars are all valid
-				//this is terrible
+				//this is terrible aww no this is clever :( 
+				//return 1; //indicates that input is valid 
+				//other checks needed ie operator check like += and random stuff 
 				
 			}
 		}
