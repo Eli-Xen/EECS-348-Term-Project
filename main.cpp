@@ -33,6 +33,8 @@ string Main::callInput() //edit this to call class InputProcessor
 {
 	InputProcessor inputProcessor
 	string expression=inputProcessor.run() //change the name of method based on what its called 
+	//inputProcessor will return an empty string to quit the program, the string "input error" if input is invalid,
+	//or the cleaned/validated string if the input is good
 	return expression; 
 }
 
