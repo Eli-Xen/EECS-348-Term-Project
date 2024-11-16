@@ -9,7 +9,7 @@ class InputProcessor {
 private:
 	//put the string in here
         //Varable to store the input from terminal
-	string uncleanInput;
+	string input;
 
 public:
 	// 1. Read values from stdin into a private variable uncleanInput
@@ -25,12 +25,12 @@ public:
 	int run();
 
 	//setter (defined in class)
-	void setUncleanInput(string data){
-		uncleanInput = data;
+	void setInput(string data){
+		input = data;
 	}
 	//getter (defined in class)
-	string getUncleanInput(){
-		return uncleanInput;
+	string getInput(){
+		return input;
 	}
 	
 };
@@ -39,6 +39,7 @@ int InputProcessor::run(){
 	getInput();
 	cleanInput();
 	int check = checkInput();
+	return check; //this will return a -1 if the user wants to quit the program, a 0 if the input is valid, and a 1 if input is invalid
 
 }
 
@@ -48,12 +49,12 @@ void InputProcessor::getInput(){
 	string tempStorage;
 	getline(cin, tempStorage);
 	//Use setter to set private varable
-	setUncleanInput(tempStorage);
+	setInput(tempStorage);
 }
 
 void InputProcessor::cleanInput() {
 	//gets the str
-	string tempStorage = getUncleanInput();
+	string tempStorage = getInput();
 	string cleanInput;
 	//cleans it of whitespace
 	for (int i = 0; i < tempStorage.length(); i++) {
@@ -61,15 +62,14 @@ void InputProcessor::cleanInput() {
 			continue;
 		cleanInput.append(tempStorage[i]);
 	}
-	//assigns the cleaned value to the "uncleaned input" member var- 
-	//should we rename that or make a new var?
-	setUncleanInput(cleanInput);
+	//assigns the cleaned value to the member var
+	setInput(cleanInput);
 }
 
 int InputProcessor::checkInput(){
-	string tempStorage = getUncleanInput();
+	string tempStorage = getInput();
 	if (tempStorage == "q") || (tempStorage == "Q") //to quit program
-		return -1; //sends to getInput function and returns to main to indicate quit 
+		return -1; //sends to run function and returns to main to indicate quit 
 	for (int i = 0; i < tempStorage.length(); i++) {
 		//trying to convert to ascii this might not work if str slicing is not type char
 		if (36 < int(tempStorage[i]) < 58) {
