@@ -22,7 +22,7 @@ public:
 	int checkInput();
 
 	//could also make a run function
-	int run();
+	string run();
 
 	//setter (defined in class)
 	void setStrInput(string data){
