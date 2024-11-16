@@ -12,7 +12,9 @@ private:
 
 public:
 	//makes first call to input processor class
-	string callInput();
+	string callInput(); 
+	string callParenthesis(); 
+	//other functions for parenthesis class and other decision making (run) 
 
 	//Setters for string varables
 	void setCleanInput(string data){
@@ -27,6 +29,19 @@ public:
 };
 
 
+string Main::callInput() //edit this to call class InputProcessor 
+{
+	InputProcessor inputProcessor
+	string expression=inputProcessor.getInput() //change the name of method based on what its called 
+	return expression; 
+}
+
+string Main::callParenthesis() //edit this to call class InputProcessor 
+{
+	ParenthesisHandler parenthesis //creates object of parenthesis handler 
+	string expression=parenthesis.evalParenthesis() 
+	return expression; 
+}
 
 int main()
 {
@@ -34,22 +49,3 @@ int main()
 	start.callInput();
 	return 0; 
 }
-
-
-string Main::callInput() //edit this to call class InputProcessor 
-{
-	InputProcessor inputProcessor
-	string expression=inputProcessor.processInput() //change the name of method based on what its called 
-	return expression; 
-}
-
-
-int InputProcessor::cleanInput(string) {
-	
-}
-
-int InputProcessor::checkInput(string){
-	
-}
-
-
