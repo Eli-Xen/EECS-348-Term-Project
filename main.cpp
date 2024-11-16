@@ -32,7 +32,7 @@ public:
 string Main::callInput() //edit this to call class InputProcessor 
 {
 	InputProcessor inputProcessor
-	string expression=inputProcessor.getInput() //change the name of method based on what its called 
+	string expression=inputProcessor.run() //change the name of method based on what its called 
 	return expression; 
 }
 
