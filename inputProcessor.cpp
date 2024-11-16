@@ -45,6 +45,7 @@ string InputProcessor::run(){
 			return "";
 			break;
 		case 0:
+			//validation was successful
 			cleanString = getStrInput();
 			return cleanString;
 			break;
@@ -70,7 +71,7 @@ void InputProcessor::cleanInput() {
 	//gets the str
 	string tempStorage = getStrInput();
 	string cleanInput;
-	//cleans it of whitespace
+	//cleans it of whitespace- doesn't append value if it's whitespace
 	for (int i = 0; i < tempStorage.length(); i++) {
 		if (tempStorage[i] == " ")
 			continue;
@@ -85,7 +86,7 @@ int InputProcessor::checkInput(){
 	if (tempStorage == "q") || (tempStorage == "Q") //to quit program
 		return -1; //sends to run function and returns to main to indicate quit 
 	for (int i = 0; i < tempStorage.length(); i++) {
-		//trying to convert to ascii this might not work if str slicing is not type char
+		//trying to convert to ascii; this might not work if str slicing is not type char, so hopefully it is. otherwise we could do str -> char -> int 
 		if (36 < int(tempStorage[i]) < 58) {
 			//means its either a number or mostly valid numerical chars
 			if (tempStorage[i] != "'" && tempStorage[i] != "," && tempStorage[i] != "-") {
