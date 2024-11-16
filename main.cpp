@@ -39,7 +39,7 @@ string Main::callInput() //edit this to call class InputProcessor
 string Main::callParenthesis() //edit this to call class InputProcessor 
 {
 	ParenthesisHandler parenthesis //creates object of parenthesis handler 
-	string expression=parenthesis.evalParenthesis() 
+	string expression=parenthesis.evalParenthesis() //keeps track of matching parenthesis, returns to main sub-expressions that need to be evaluated
 	return expression; 
 }
 
