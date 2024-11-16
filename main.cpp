@@ -40,12 +40,14 @@ string Main::callParenthesis() //edit this to call class InputProcessor
 {
 	ParenthesisHandler parenthesis //creates object of parenthesis handler 
 	string expression=parenthesis.evalParenthesis() //keeps track of matching parenthesis, returns to main sub-expressions that need to be evaluated
+	//idea is to interact between parenthesis and main to evaulate each sub-expression one at a time and update the expression 
 	return expression; 
 }
 
 int main()
 {
 	Main start; //starts the program 
-	start.callInput();
+	start.callInput(); 
+	start.callParenthesis(); 
 	return 0; 
 }
