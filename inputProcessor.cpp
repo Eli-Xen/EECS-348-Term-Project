@@ -68,9 +68,10 @@ int InputProcessor::checkInput(){
 			//means its either a number or mostly valid numerical chars
 			if (tempStorage[i] != "'" && tempStorage[i] != "," && tempStorage[i] != "-") {
 				//chars are all valid
+				//this is terrible
+				
 			}
 		}
-
 	}
 	return 0;
 }
