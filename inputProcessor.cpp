@@ -12,7 +12,7 @@ private:
 	string input;
 
 public:
-	// 1. Read values from stdin into a private variable uncleanInput
+	// 1. Read values from stdin into a private variable input
 	void getInput();
 
 	// 2. Clean input str
