@@ -25,21 +25,35 @@ public:
 	int run();
 
 	//setter (defined in class)
-	void setInput(string data){
+	void setStrInput(string data){
 		input = data;
 	}
 	//getter (defined in class)
-	string getInput(){
+	string getStrInput(){
 		return input;
 	}
 	
 };
 
-int InputProcessor::run(){
+string InputProcessor::run(){
 	getInput();
 	cleanInput();
 	int check = checkInput();
-	return check; //this will return a -1 if the user wants to quit the program, a 0 if the input is valid, and a 1 if input is invalid
+	switch (check) {
+		case -1:
+			//this means user wants to quit: returns empty str
+			return "";
+			break;
+		case 0:
+			cleanString = getStrInput();
+			return cleanString;
+			break;
+		case 1:
+			//error occurred
+			//maybe send something to std::err??
+			return "input error";
+			break;
+	}
 
 }
 
@@ -49,12 +63,12 @@ void InputProcessor::getInput(){
 	string tempStorage;
 	getline(cin, tempStorage);
 	//Use setter to set private varable
-	setInput(tempStorage);
+	setStrInput(tempStorage);
 }
 
 void InputProcessor::cleanInput() {
 	//gets the str
-	string tempStorage = getInput();
+	string tempStorage = getStrInput();
 	string cleanInput;
 	//cleans it of whitespace
 	for (int i = 0; i < tempStorage.length(); i++) {
@@ -63,11 +77,11 @@ void InputProcessor::cleanInput() {
 		cleanInput.append(tempStorage[i]);
 	}
 	//assigns the cleaned value to the member var
-	setInput(cleanInput);
+	setStrInput(cleanInput);
 }
 
 int InputProcessor::checkInput(){
-	string tempStorage = getInput();
+	string tempStorage = getStrInput();
 	if (tempStorage == "q") || (tempStorage == "Q") //to quit program
 		return -1; //sends to run function and returns to main to indicate quit 
 	for (int i = 0; i < tempStorage.length(); i++) {
