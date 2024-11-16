@@ -63,8 +63,13 @@ int InputProcessor::checkInput(){
 	if (tempStorage == "q") || (tempStorage == "Q")
 		return -1;
 	for (int i = 0; i < (tempStorage.length() - 1); i++) {
-		//trying to convert to ascii this might not work
-		if int(tempStorage[i]) 
+		//trying to convert to ascii this might not work if str slicing is not type char
+		if (36 < int(tempStorage[i]) < 58) {
+			//means its either a number or mostly valid numerical chars
+			if (tempStorage[i] != "'" && tempStorage[i] != "," && tempStorage[i] != "-") {
+				//chars are all valid
+			}
+		}
 
 	}
 	return 0;
