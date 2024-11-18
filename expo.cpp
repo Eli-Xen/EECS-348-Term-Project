@@ -13,7 +13,7 @@ public:
 
     int identifyComponents(string data);
 
-    int run()
+    int run();
 
 
 };
