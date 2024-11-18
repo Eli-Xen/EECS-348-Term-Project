@@ -10,13 +10,13 @@ private:
 public:
     int evaluateModulus(int left, int right);
 
-    int run()
+    int run();
     //Function for checking if the data is vaild
     //For example, if negitive values are passes in we need to do some preprocessing
     //Also we can convert the string into ints here
     int validateInput(string data);
 
-}
+};
 
 int Modulus::evaluateModulus(int left, int right){
 

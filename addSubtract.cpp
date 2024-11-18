@@ -18,13 +18,13 @@ public:
 
     int sub(int left, int right);
 
-}
+};
 
 int AddSub::add(int left, int right){
     
 }
 
-int AddSub::findOperators(int left, int right){
+int AddSub::findOperators(string data){
 
 }
 int AddSub::run(){

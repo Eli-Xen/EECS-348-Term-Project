@@ -19,7 +19,7 @@ public:
 
 
 
-}
+};
 
 int MultDiv::evaluateDiv(int left, int right){
     

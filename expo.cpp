@@ -16,7 +16,7 @@ public:
     int run()
 
 
-}
+};
 
 int Expo::evlExponent(int left, int right){
 
