@@ -23,7 +23,7 @@ template <typename T> T AddSub::add(T left, T right){
 }
 
 template <typename T> T AddSub::findOperators(string left, string oper, string right){
-//make sure to identify opearand sand operators, left and right operand 
+//take in operator and left/right operator, then solve 
 }
 
 template <typename T> T AddSub::sub(T left, T right){
