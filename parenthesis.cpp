@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <sstream> 
 
 using namespace std;
 
@@ -11,35 +11,19 @@ private:
   string subExpression; 
 
 public:
-	string callInput(); 
-	string callParenthesis(); 
-
-	//Setters for string varables
-	void setCleanInput(string data){
-		cleanInput = data;
-	}
-
-	//Getters for string varables
-	string getCleanInput(){
-		return cleanInput;
-	}
+	string countParenthesis(); 
+	string subExpressionEval(); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
 
 };
 
 
-string Main::callInput() //edit this to call class InputProcessor 
+string Parenthesis::countParenthesis() 
 {
-	InputProcessor inputProcessor
-	string expression=inputProcessor.run() //change the name of method based on what its called 
-	//inputProcessor will return an empty string to quit the program, the string "input error" if input is invalid,
-	//or the cleaned/validated string if the input is good
-	return expression; 
+	int count=0; //whenever there is a ( count+=1, when there is a ) count-=1 
+	//seperation of subexpressions and numbers 
 }
 
-string Main::callParenthesis() //edit this to call class InputProcessor 
+string Parenthesis::subExpressionEval() //edit this to call class InputProcessor 
 {
-	ParenthesisHandler parenthesis //creates object of parenthesis handler 
-	string expression=parenthesis.evalParenthesis() //keeps track of matching parenthesis, returns to main sub-expressions that need to be evaluated
-	//idea is to interact between parenthesis and main to evaulate each sub-expression one at a time and update the expression 
-	return expression; 
+	expressionEval evaluator
 }
