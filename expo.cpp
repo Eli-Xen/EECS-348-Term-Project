@@ -1,5 +1,8 @@
 #include "expo.h" //header file for this file
 #include<bits/stdc++.h> 
+#include <string> //so we can return strings from functions 
+#include <iostream>
+#include <sstream> 
 using namespace std;
 
 class Expo {
