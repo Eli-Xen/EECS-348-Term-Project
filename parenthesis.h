@@ -3,18 +3,17 @@
 #define PARENTHESIS_H //starts defenition for header file 
 
 #include <string> //so we can return strings from functions 
+#include <iostream>
+#include <sstream> 
 using namespace std; 
 
 class Parenthesis
 {
 private:
 	string fullExpression;
-  string subExpression; 
+	string subExpression; 
 public: 
-	string getInput();
-	int cleanInput(string);
-	int checkInput(string);
-	void setUncleanInput(string data); //setter 
-	string getUncleanInput(); //getter
+	string countParenthesis(); 
+	string subExpressionEval();
 }; 
 #endif //ends defenition of header file 
