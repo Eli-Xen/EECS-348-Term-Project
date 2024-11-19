@@ -100,18 +100,26 @@ template <typename T> T ExpressionEval::run(string express){
     token()
     //This block of for loops should evaluate the tokens acording to PEMDAS
     //It's still a bit of a work in progress 
-    for(int i = 0; i < tokens.size(); i++ ){
+    int i = 0
+    while(i < tokens.size(); i++ ){
         //Find all exponets and send them to be evaluated 
         if(tokens[i] == "**"){
             string value = Expo::evaluateExpo(tokens[i-1],tokens[i+1]);
             tokens[i] = value;
             tokens.erase(tokens.begin() + i+1);
             tokens.erase(tokens.begin() + i-1);
+            //Add to i to move 
+            if(i < tokens.size()){
+                i++;
+            }
+            else{
+                break;
+            }
 
         }
     }
-
-    for(int i = 0; i < tokens.size(); i++ ){
+    int i = 0
+    while(i < tokens.size(); i++ ){
         //Find all the multiplication, division, and modulus.
         if(tokens[i] == "*" || tokens[i] == "/" || tokens[i] == "%"){
             //Seperate check for mod because we have to call a different class
@@ -120,20 +128,40 @@ template <typename T> T ExpressionEval::run(string express){
                 tokens[i] = value;
                 tokens.erase(tokens.begin() + i+1);
                 tokens.erase(tokens.begin() + i-1);
-            }
+                if(i < tokens.size()){
+                    i++;
+                }
+                else{
+                    break;
+                }
             else{
                 string value = MultDiv::validateInput(tokens[i-1], tokens[i], tokens[i+1]);
                 tokens[i] = value;
                 tokens.erase(tokens.begin() + i+1);
                 tokens.erase(tokens.begin() + i-1);
+                if(i < tokens.size()){
+                    i++;
+                }
+                else{
+                    break;
+                }
             }
         }
     }
-
-    for(int i = 0; i < tokens.size(); i++ ){
+    int i = 0
+    while(i < tokens.size(); i++ ){
         //Find all the addition and subtraction
         if(tokens[i] == "+" || tokens[i] == "-"){
-            AddSub::validateInput(tokens[i-1], tokens[i],tokens[i+1]);
+            string value AddSub::validateInput(tokens[i-1], tokens[i],tokens[i+1]);
+            tokens[i] = value;
+            tokens.erase(tokens.begin() + i+1);
+            tokens.erase(tokens.begin() + i-1);
+            if(i < tokens.size()){
+                i++;
+            }
+            else{
+                break;
+            }
         }
     }
 
