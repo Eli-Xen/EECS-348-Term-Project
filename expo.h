@@ -10,8 +10,12 @@ private:
     string expression;
 
 public:
-    int evlExponent(int base, int power);
-    int identifyComponents(string data);
-    int run();
+
+    template <typename T> T evlExponent(T base, T power);
+
+    template <typename T> T identifyComponents(string data);
+
+    template <typename T> T run();
+
 };
 #endif //ends defenition of header file 

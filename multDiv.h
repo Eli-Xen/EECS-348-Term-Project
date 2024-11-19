@@ -11,11 +11,11 @@ class MultDiv{
 
     public:
 
-        int evaluateDiv(int left, int right);
+        template <typename T> T evaluateDiv(T left, T right);
 
-        int evaluateMult(int left, int right);
+        template <typename T> T evaluateMult(T left, T right);
 
-        int run();
+        template <typename T> T run();
 
         int validateInput(string data);
 

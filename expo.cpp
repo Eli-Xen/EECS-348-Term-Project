@@ -9,23 +9,23 @@ private:
 
 public:
 
-    int evlExponent(int base, int power);
+    template <typename T> T evlExponent(T base, T power);
 
-    int identifyComponents(string data);
+    template <typename T> T identifyComponents(string data);
 
-    int run();
+    template <typename T> T run();
 
 
 };
 
-int Expo::evlExponent(int left, int right){
+template <typename T> T Expo::evlExponent(T left, T right){
 
 }
 
-int Expo::identifyComponents(string data){
+template <typename T> T Expo::identifyComponents(string data){
 
 }
 
-int Expo::run(){
+template <typename T> T Expo::run(){
 
 }

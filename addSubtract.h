@@ -9,11 +9,15 @@ class addSub
 {
     private:
         string expression;
-    public: 
-        int add(int left, int right);
-        int findOperators(string data);
-        int run();
-        int sub(int left, int right);
+public:
 
-}; 
+    template <typename T> T  add(T left, T right);
+
+    template <typename T> T findOperators(string data);
+
+    template <typename T> T run();
+
+    template <typename T> T  sub(T left,T right);
+
+};
 #endif //ends defenition of header file 

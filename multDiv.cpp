@@ -9,11 +9,11 @@ private:
 
 public:
 
-    int evaluateDiv(int left, int right);
+    template <typename T> T evaluateDiv(T left, T right);
 
-    int evaluateMult(int left, int right);
+    template <typename T> T evaluateMult(T left, T right);
 
-    int run();
+    template <typename T> T run();
 
     int validateInput(string data);
 
@@ -21,14 +21,14 @@ public:
 
 };
 
-int MultDiv::evaluateDiv(int left, int right){
+template <typename T> T MultDiv::evaluateDiv(T left, T right){
     
 }
 
-int MultDiv::evaluateMult(int left, int right){
+template <typename T> T MultDiv::evaluateMult(T left, T right){
 
 }
-int MultDiv::run(){
+template <typename T> T MultDiv::run(){
 
 }
 
