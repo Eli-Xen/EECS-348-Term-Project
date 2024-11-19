@@ -21,7 +21,7 @@ private:
 public:
     void token(){};
 
-    template <typename T> T run();
+    template <typename T> T run(string express);
 
     bool isOperator(char character){
         return (character == '*' || character == '/' || character =='%' || character == '-' || character == '+');

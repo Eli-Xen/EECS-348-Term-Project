@@ -134,6 +134,7 @@ template <typename T> T ExpressionEval::run(string express){
                 else{
                     break;
                 }
+            }
             else{
                 string value = MultDiv::validateInput(tokens[i-1], tokens[i], tokens[i+1]);
                 tokens[i] = value;
