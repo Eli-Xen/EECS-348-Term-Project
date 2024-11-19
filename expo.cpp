@@ -17,7 +17,8 @@ public:
 };
 
 template <typename T> T Expo::evlExponent(T base, T power){
-//identiy base, operand ^, and exponent 
+//takes in operand and left (base) and right (exponent) 
     //loop that multiplies base by iteself exponent amount of times 
+    //acommodate for negative exponents 
 }
 
