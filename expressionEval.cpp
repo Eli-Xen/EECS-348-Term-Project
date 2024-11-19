@@ -39,7 +39,7 @@ void ExpressionEval::token(){
     //Set exp as a short hand for the input string 
     string exp = getExp();
     //Set a current token
-    //We will be added to this in the cases like decimals and negitives 
+    //We will be adding to this in the cases like decimals and negitives 
     string currentToken;
     for (int i = 0; i < exp.length(); i++) {
         //Main loop
@@ -49,14 +49,14 @@ void ExpressionEval::token(){
             currentToken += exp[i];
         }
         //Check if the current char is a negitive sign
-        //We have to do a be of checking to make sure that its not a minus operation 
+        //We have to do a bit of checking to make sure that its not a minus operation 
         else if (exp[i] == '-' && (i == 0 || isOperator(exp[i-1])) || (exp[i-1] == '*') && exp[i-2] == '*'){
             //If it is a negitive sign, we can add it to the token 
             //If the logic works this should always be at the start of a token
             currentToken += exp[i];
         }
 
-        //Because c++ hates my happness exponents can't be checked as a char
+        //Because c++ hates my happiness exponents can't be checked as a char
         //So we have to check if the current char is a *. Then we can check if the next char is as well
         else if (exp[i] == '*'&& exp[i + 1] == '*'){
             //If there is already an expression in the current token, we clear it 
