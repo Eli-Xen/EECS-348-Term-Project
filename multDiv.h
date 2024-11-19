@@ -9,14 +9,18 @@ class MultDiv{
     private:
         string expression;
 
-    public:
+public:
 
-        template <typename T> T evaluateDiv(T left, T right);
+    template <typename T> T evaluateDiv(T left, T right);
 
-        template <typename T> T evaluateMult(T left, T right);
+    template <typename T> T evaluateMult(T left, T right);
 
 
-        int validateInput(string data);
+    int validateInput(string left, string oper,string right);
+
+
+
+};
 
 };
 #endif //ends defenition of header file 

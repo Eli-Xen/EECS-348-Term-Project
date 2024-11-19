@@ -19,12 +19,16 @@ public:
     void token(){};
 
     //Method that will call operations on the tokens
-    template <typename T> T run();
+    template <typename T> T run(string express);
 
     //Method to check if a char is an operator
     bool isOperator(char character){
         return (character == '*' || character == '/' || character =='%' || character == '-' || character == '+');
         
+    }
+    //Setter for the expession var
+    void setExp(string val){
+        expression = val;
     }
     //Getter for the expression var
     string getExp(){
@@ -91,13 +95,19 @@ void ExpressionEval::token(){
 
     
 }
-template <typename T> T ExpressionEval::run(){
+template <typename T> T ExpressionEval::run(string express){
+    setExp(express)
+    token()
     //This block of for loops should evaluate the tokens acording to PEMDAS
     //It's still a bit of a work in progress 
     for(int i = 0; i < tokens.size(); i++ ){
         //Find all exponets and send them to be evaluated 
         if(tokens[i] == "**"){
-            Expo::evaluateExpo(tokens[i-1],tokens[i+1]);
+            string value = Expo::evaluateExpo(tokens[i-1],tokens[i+1]);
+            tokens[i] = value;
+            tokens.erase(tokens.begin() + i+1);
+            tokens.erase(tokens.begin() + i-1);
+
         }
     }
 
@@ -106,10 +116,16 @@ template <typename T> T ExpressionEval::run(){
         if(tokens[i] == "*" || tokens[i] == "/" || tokens[i] == "%"){
             //Seperate check for mod because we have to call a different class
             if(tokens[i] == "%"){
-                Modulus::validateInput(tokens[i-1], tokens[i+1]);
+                string value = Modulus::validateInput(tokens[i-1], tokens[i+1]);
+                tokens[i] = value;
+                tokens.erase(tokens.begin() + i+1);
+                tokens.erase(tokens.begin() + i-1);
             }
             else{
-                MultDiv::validateInput(tokens[i-1] + tokens[i] + tokens[i+1]);
+                string value = MultDiv::validateInput(tokens[i-1], tokens[i], tokens[i+1]);
+                tokens[i] = value;
+                tokens.erase(tokens.begin() + i+1);
+                tokens.erase(tokens.begin() + i-1);
             }
         }
     }
@@ -117,7 +133,7 @@ template <typename T> T ExpressionEval::run(){
     for(int i = 0; i < tokens.size(); i++ ){
         //Find all the addition and subtraction
         if(tokens[i] == "+" || tokens[i] == "-"){
-            AddSub::validateInput(tokens[i-1] + tokens[i] + tokens[i+1]);
+            AddSub::validateInput(tokens[i-1], tokens[i],tokens[i+1]);
         }
     }
 
