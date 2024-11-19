@@ -3,6 +3,7 @@
 #include <sstream>
 
 using namespace std;
+#include "main.h" //header file for this file
 
 class Main {
 private:
