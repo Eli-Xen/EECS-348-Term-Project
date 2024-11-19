@@ -15,8 +15,6 @@ public:
 
     template <typename T> T findOperators(string data);
 
-    template <typename T> T run();
-
     template <typename T> T  sub(T left,T right);
 
 };

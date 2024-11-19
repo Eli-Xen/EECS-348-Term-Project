@@ -11,7 +11,6 @@ private:
 	string expression;
 public: 
 	int evaluateModulus(int left, int right);
-	int run();
-	int validateInput(string data); 
+	int validateInput(string left, string right); 
 }; 
 #endif //ends defenition of header file 

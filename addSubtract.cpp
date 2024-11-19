@@ -13,7 +13,6 @@ public:
 
     template <typename T> T findOperators(string data);
 
-    template <typename T> T run();
 
     template <typename T> T  sub(T left,T right);
 
@@ -26,10 +25,6 @@ template <typename T> T AddSub::add(T left, T right){
 template <typename T> T AddSub::findOperators(string data){
 
 }
-template <typename T> T AddSub::run(){
-
-}
-
 
 template <typename T> T AddSub::sub(T left, T right){
 

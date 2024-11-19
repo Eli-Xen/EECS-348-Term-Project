@@ -11,21 +11,12 @@ public:
 
     template <typename T> T evlExponent(T base, T power);
 
-    template <typename T> T identifyComponents(string data);
 
-    template <typename T> T run();
 
 
 };
 
-template <typename T> T Expo::evlExponent(T left, T right){
+template <typename T> T Expo::evlExponent(T base, T power){
 
 }
 
-template <typename T> T Expo::identifyComponents(string data){
-
-}
-
-template <typename T> T Expo::run(){
-
-}

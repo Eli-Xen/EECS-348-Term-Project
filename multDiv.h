@@ -15,7 +15,6 @@ class MultDiv{
 
         template <typename T> T evaluateMult(T left, T right);
 
-        template <typename T> T run();
 
         int validateInput(string data);
 

@@ -13,7 +13,6 @@ public:
 
     template <typename T> T evaluateMult(T left, T right);
 
-    template <typename T> T run();
 
     int validateInput(string data);
 
@@ -28,11 +27,6 @@ template <typename T> T MultDiv::evaluateDiv(T left, T right){
 template <typename T> T MultDiv::evaluateMult(T left, T right){
 
 }
-template <typename T> T MultDiv::run(){
-
-}
-
-
 int MultDiv::validateInput(string data){
 
 }

@@ -13,9 +13,5 @@ public:
 
     template <typename T> T evlExponent(T base, T power);
 
-    template <typename T> T identifyComponents(string data);
-
-    template <typename T> T run();
-
 };
 #endif //ends defenition of header file 
