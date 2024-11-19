@@ -1,5 +1,5 @@
 #include "expo.h" //header file for this file
-#include<bits/stdc++.h> 
+#include<bits/stdc++.h> //https://www.geeksforgeeks.org/cpp-string-to-float-double-and-vice-versa/#
 #include <string> //so we can return strings from functions 
 #include <iostream>
 #include <sstream> 
