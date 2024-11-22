@@ -133,7 +133,7 @@ int verifyToken(){
         //Adjust index after removing elements from the vector
         i = j;
     }
-    return 0
+    return 0;
 }
 string ExpressionEval::run(string express){
     setExp(express);
