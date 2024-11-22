@@ -5,14 +5,10 @@
 #include <string> //so we can return strings from functions 
 using namespace std;
 
-class addSub
-{
-    public:
+class AddSub{
+public:
     
+    string validateInput(string left, string operation, string right);
     
-        template <typename T> T validateInput(T left, string operation, T right);
-    
-    
-
 };
 #endif //ends defenition of header file 
