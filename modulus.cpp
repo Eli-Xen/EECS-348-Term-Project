@@ -1,4 +1,8 @@
 #include "modulus.h" //header file for this file
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <cmath>
 using namespace std;
 
 class Modulus {
@@ -8,7 +12,7 @@ private:
     string expression;
 
 public:
-    int evaluateModulus(int left, int right);
+    int evaluateModulus(string left, string right);
 
     //Function for checking if the data is vaild
     //For example, if negitive values are passes in we need to do some preprocessing
@@ -17,11 +21,44 @@ public:
 
 };
 
-int Modulus::evaluateModulus(int left, int right){
+int Modulus::evaluateModulus(string left, string right){
+    double l = stod(left);
+    double r = stod(right);
+    double result = 0.0;
+
+    /*in case we need to handle negatives*/
+    // if (l < 0.0 || r < 0.0) {        
+    //     if (l < 0.0 && r > 0.0) {
+    //         int i = -1;
+    //         while (r > l) {
+    //             r = r*i;
+    //             i--;
+    //         }
+    //         result = l - r;
+    //         return result;
+    //     } else if ()
+        result = fmod(l,r); //fmod allows modulus calculation of doubles through cmath
+        return result;
+    // }
 
 }
 
 
 int Modulus::validateInput(string left, string right){
+/*Not quite sure what I should return as an error, I imagine we are making
+a method later that will be used to stop the program, leaving logic here*/
+    double l = stod(left);
+    double r = stod(right);
+    if (r == 0.0) { //checks division by zero
+        cerr;
+    } else if (l < 0.0 || r < 0.0) {    //checks if any operands are negative
+        cerr;
+    } else {
+        return 0;
+    }
+
+
+    
+
 
 }
