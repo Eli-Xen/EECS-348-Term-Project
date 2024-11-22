@@ -96,26 +96,41 @@ void ExpressionEval::token(){
 }
 
 int verifyToken(){
-    if(isOperator(tokens[tokens.size()-1]) || isOperator(tokens[0])  ){
+    //Throw error if we have operations at the end of the expression 
+    if(isOperator(tokens[tokens.size()-1])){
         return -1;
     }
 
     int i = 0;
+    //Looks for repeated operations in the tokens
+    //Example: +--+2 + 2
+    //This should be simplified to 2+2
     while(i < tokens.size()){
+        //Short hand for current token
         string token = tokens[i];
+        //Checks if the current token is an operator 
         if(isOperator(token)){
+            //Count to keep track of negitives 
             int count = 0;
+            //Sets a variable to start where we found the first operator 
             int j = i;
+            //If we haven't hit the end of the vector and we have more operators, keep going
             while(j < tokens.size() && isOperator(tokens[j])){
                 if(tokens[j] == '-'){
                     count += 1;
                 }
                 j++;
             }
+            //Shorthand c++ statment
+            //Reads if count mod 2 is 0 then simplify = "+"
+            //If not, simplify = "-"
             string simplify = (count % 2 == 0) ? "+" : "-";
+            //Set the first operator to the simplified operator 
             tokens[i] = simplify;
+            //Remove all operators between the new one and the next number 
             tokens.erase(tokens.begin() + i+1,tokens.begin() + j);
         }
+        //Adjust index after removing elements from the vector
         i = j;
     }
     return 0
@@ -191,6 +206,4 @@ string ExpressionEval::run(string express){
             }
         }
     }
-
-
 }
