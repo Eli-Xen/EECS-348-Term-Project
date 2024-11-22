@@ -1,4 +1,6 @@
 #include "addSubtract.h" //header file for this file
+#include <iostream>
+#include <string>
 using namespace std;
 
 class AddSub {
