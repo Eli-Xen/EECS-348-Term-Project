@@ -18,8 +18,10 @@ public:
     //The method that will turn the input into tokens 
     void token(){};
 
+    int verifyTokens():
+
     //Method that will call operations on the tokens
-    template <typename T> T run(string express);
+    string run(string express);
 
     //Method to check if a char is an operator
     bool isOperator(char character){
@@ -46,6 +48,9 @@ void ExpressionEval::token(){
     //We will be adding to this in the cases like decimals and negitives 
     string currentToken;
     for (int i = 0; i < exp.length(); i++) {
+        if(isspace(exp[i])){
+            continue;
+        }
         //Main loop
         if (isdigit(exp[i]) || '.') {
             //Check if the current char is a number or a decimal place
@@ -54,7 +59,7 @@ void ExpressionEval::token(){
         }
         //Check if the current char is a negitive sign
         //We have to do a bit of checking to make sure that its not a minus operation 
-        else if (exp[i] == '-' && (i == 0 || isOperator(exp[i-1])) || (exp[i-1] == '*') && exp[i-2] == '*'){
+        else if (exp[i] == '-' && (i == 0 || isOperator(exp[i-1]))){
             //If it is a negitive sign, we can add it to the token 
             //If the logic works this should always be at the start of a token
             currentToken += exp[i];
@@ -79,10 +84,7 @@ void ExpressionEval::token(){
                 tokens.push_back(currentToken);
                 currentToken = "";
             }
-            //C++ and I got into a fight about chars and strings 
-            //This abomination was our compromise
-            string s = "";
-            tokens.push_back(s + exp[i]);
+            tokens.push_back(string(1,exp[i]));
 
         }
 
@@ -91,13 +93,37 @@ void ExpressionEval::token(){
     if (currentToken != ""){
         tokens.push_back(currentToken);
     }
-
-
-    
 }
-template <typename T> T ExpressionEval::run(string express){
-    setExp(express)
-    token()
+
+int verifyToken(){
+    if(isOperator(tokens[tokens.size()-1]) || isOperator(tokens[0])  ){
+        return -1;
+    }
+
+    int i = 0;
+    while(i < tokens.size()){
+        string token = tokens[i];
+        if(isOperator(token)){
+            int count = 0;
+            int j = i;
+            while(j < tokens.size() && isOperator(tokens[j])){
+                if(tokens[j] == '-'){
+                    count += 1;
+                }
+                j++;
+            }
+            string simplify = (count % 2 == 0) ? "+" : "-";
+            tokens[i] = simplify;
+            tokens.erase(tokens.begin() + i+1,tokens.begin() + j);
+        }
+        i = j;
+    }
+    return 0
+}
+string ExpressionEval::run(string express){
+    setExp(express);
+    token();
+    verifyToken();
     //This block of for loops should evaluate the tokens acording to PEMDAS
     //It's still a bit of a work in progress 
     int i = 0
@@ -153,7 +179,7 @@ template <typename T> T ExpressionEval::run(string express){
     while(i < tokens.size(); i++ ){
         //Find all the addition and subtraction
         if(tokens[i] == "+" || tokens[i] == "-"){
-            string value AddSub::validateInput(tokens[i-1], tokens[i],tokens[i+1]);
+            string value = AddSub::validateInput(tokens[i-1], tokens[i],tokens[i+1]);
             tokens[i] = value;
             tokens.erase(tokens.begin() + i+1);
             tokens.erase(tokens.begin() + i-1);
