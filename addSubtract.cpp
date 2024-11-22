@@ -9,22 +9,25 @@ private:
 
 public:
     
-    template <typename T> T validateInput(T left, string operation, T right);
+    string validateInput(string left, string operation, string right);
 
 };
 
 
-template <typename T> T AddSub::validateInput(T left, string operation, T right){
+string AddSub::validateInput(string left, string operation, string right){
     try {
+        //converts to double
+        double double_left = stod(left);
+        double double_right = stod(right);
         //subtracts or adds based on the value of operation- operation should either be a "-" or "+"
-        if (expression == "-") {
-            return left - right;
-        } else if (expression == "+")
-            return left + right;
+        if (operation == "-") {
+            return string(double_left - double_right);
+        } else if (operation == "+")
+            return string(double_left + double_right);
     } //if something goes wrong, an error will be printed to cout, and the function will return -1 
     catch (...) {
-        cout << "Error arose within AddSub, expression that was being validated was " << left << expression << right << endl;
-        return -1;
+        cout << "Error arose within AddSub, expression that was being validated was " << left << operation << right << endl;
+        return "error";
     }
 
 
