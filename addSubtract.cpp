@@ -3,29 +3,25 @@ using namespace std;
 
 class AddSub {
 private:
-    //I'm not sure what type of data we want to pass into these classes
-    //For now I left it as string. Feel free to change as needed
-    string expression;
+    
 
 public:
 
-    template <typename T> T  add(T left, T right);
-
-    template <typename T> T findOperators(string left, string oper, string right);
-
-
-    template <typename T> T  sub(T left,T right);
+    template <typename T> T validateInput(T left, string operation, T right);
 
 };
 
-template <typename T> T AddSub::add(T left, T right){
-    
-}
 
-template <typename T> T AddSub::findOperators(string left, string oper, string right){
-//take in operator and left/right operator, then solve 
-}
+template <typename T> T AddSub::validateInput(T left, string operation, T right){
+    try {
+        if (expression == "-") {
+            return left - right;
+        } else if (expression == "+")
+            return left + right;
+    }
+    catch (...) {
+        cout << "Error arose within AddSub, expression that was being validated was " << left << expression << right << endl;
+    }
 
-template <typename T> T AddSub::sub(T left, T right){
 
-}
+
