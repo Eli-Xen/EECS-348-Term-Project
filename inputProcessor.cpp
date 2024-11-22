@@ -73,9 +73,9 @@ void InputProcessor::cleanInput() {
 	string cleanInput;
 	//cleans it of whitespace- doesn't append value if it's whitespace
 	for (int i = 0; i < tempStorage.length(); i++) {
-		if (tempStorage[i] == " ")
+		if (tempStorage[i] == ' ')
 			continue;
-		cleanInput.append(tempStorage[i]);
+		cleanInput += tempStorage[i];
 	}
 	//assigns the cleaned value to the member var
 	setStrInput(cleanInput);
