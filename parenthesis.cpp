@@ -11,19 +11,20 @@ private:
   string subExpression; 
 
 public:
-	string countParenthesis(); 
-	string subExpressionEval(); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
-
+	//pointer to return array 
+	arr tokenizer(string expression); 
+	arr postfix(pointer to array after tokenizer); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
+	//make new array that stores result and reutrn pointer to that array 
+	arr expressionTree(pointer to array); 
 };
 
 
-string Parenthesis::countParenthesis() 
+string Parenthesis::tokenizer(string expression) 
 {
-	int count=0; //whenever there is a ( count+=1, when there is a ) count-=1 
-	//seperation of subexpressions and numbers 
+	
 }
 
-string Parenthesis::subExpressionEval() //edit this to call class InputProcessor 
+string Parenthesis::postfix(pointer to tokenized array) //edit this to call class InputProcessor 
 {
 	expressionEval evaluator
 }
