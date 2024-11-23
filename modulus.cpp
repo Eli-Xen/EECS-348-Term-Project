@@ -57,9 +57,4 @@ a method later that will be used to stop the program, leaving logic here*/
     } else {
         return 0;
     }
-
-
-    
-
-
 }
