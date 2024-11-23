@@ -5,6 +5,7 @@
 #include <string> //so we can return strings from functions 
 #include <iostream>
 #include <sstream> 
+#include <vector>
 using namespace std; 
 
 class Parenthesis
