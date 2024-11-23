@@ -10,10 +10,13 @@ using namespace std;
 class Parenthesis
 {
 private:
-	string fullExpression;
-	string subExpression; 
+	string originalExpression; 
+	vector<string> tokens; 
+	vector<string> postfix; 
+	vector<string> final; 
 public: 
-	string countParenthesis(); 
-	string subExpressionEval();
+	vector<string> tokenizer(string expression); 
+	vector<string> postfix(const vector<string>& tokens); 
+	vector<string> expressionTree(const vector<string>& postfix); 
 }; 
 #endif //ends defenition of header file 
