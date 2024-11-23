@@ -12,7 +12,7 @@ private:
     string expression;
 
 public:
-    int evaluateModulus(string left, string right);
+    double evaluateModulus(string left, string right);
 
     //Function for checking if the data is vaild
     //For example, if negitive values are passes in we need to do some preprocessing
@@ -21,7 +21,7 @@ public:
 
 };
 
-int Modulus::evaluateModulus(string left, string right){
+double Modulus::evaluateModulus(string left, string right){
     double l = stod(left);
     double r = stod(right);
     double result = 0.0;
@@ -58,3 +58,4 @@ a method later that will be used to stop the program, leaving logic here*/
         return 0;
     }
 }
+
