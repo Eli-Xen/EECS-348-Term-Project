@@ -12,14 +12,16 @@ private:
 	string originalExpression; //original string expression after inputProcessor does its thing
 	vector<string> tokens; //vector that holds tokens after tokenizer runs 
 	vector<string> postfix; //vector that holds postfix toekns expression after postfix runs 
-	vector<string> final; //vector expressionTree runs 
+	Node* root; //vector expressionTree runs 
+    string final; 
 public:
 	//Method to check if a char is an operator
-    bool isOperator(string character){return (character == "*" || character == "/" || character =="%" || character == "-" || character == "+" || character == "**");} //this should include ** i think? 
+    bool isOperator(string character){return (character == "*" || character == "/" || character =="%" || character == "-" || character == "+" || character == "**");}  
 	//each has pointer to vector it returns 
 	vector<string> tokenizer(string expression); 
 	vector<string> postfix(const vector<string>& tokens); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
 	Node* expressionTree(const vector<string>& postfix); 
+    string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
 };
 
 
@@ -122,4 +124,3 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
     
 	return tree.top(); //in theory returns the root/top of the expression tree to then be evaluated 
 }
-
