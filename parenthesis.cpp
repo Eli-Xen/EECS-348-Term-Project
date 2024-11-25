@@ -22,6 +22,14 @@ public:
 };
 
 
+class Node //cute little binary node class right here! 
+{
+public: 
+    string value; 
+    Node* left; 
+    Node* right; 
+}; 
+
 
 
 vector<string> Parenthesis::tokenizer(string expression){
