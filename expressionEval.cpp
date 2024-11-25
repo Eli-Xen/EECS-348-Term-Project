@@ -95,20 +95,23 @@ void ExpressionEval::token(){
     }
 }
 
-int verifyToken(){
+vector<string> cleanToken(vector<string>& tokens){
     //Throw error if we have operations at the end of the expression 
+    if(tokens.size() == 1 && isdigit(tokens[0])){
+        return tokens;
+    }
     if(isOperator(tokens[tokens.size()-1])){
-        return -1;
+        //Throw error
+        //Not sure how we want to handle this yet
     }
 
     int i = 0;
     //Looks for repeated operations in the tokens
-    //Example: +--+2 + 2
-    //This should be simplified to 2+2
     while(i < tokens.size()){
         //Short hand for current token
         string token = tokens[i];
         //Checks if the current token is an operator 
+
         if(isOperator(token)){
             //Count to keep track of negitives 
             int count = 0;
@@ -122,18 +125,47 @@ int verifyToken(){
                 j++;
             }
             //Shorthand c++ statment
-            //Reads if count mod 2 is 0 then simplify = "+"
+            //Reads if count mod 2 is 0 then simplify = ""
             //If not, simplify = "-"
-            string simplify = (count % 2 == 0) ? "+" : "-";
+            string simplify = (count % 2 == 0) ? "" : "-";
             //Set the first operator to the simplified operator 
             tokens[i] = simplify;
             //Remove all operators between the new one and the next number 
             tokens.erase(tokens.begin() + i+1,tokens.begin() + j);
+            i = j-1;
+
+
         }
-        //Adjust index after removing elements from the vector
-        i = j;
+        else{
+            //If the token does not have an operator, skip it 
+            i++;
+        }
+
     }
-    return 0;
+    //This block checks for things like "+","-5"
+    //It aims to reduce this into "-5"
+
+    //Checks if the first character in the tokens is a +
+    if(tokens[0] == "+"){
+        tokens.erase(tokens.begin());//Removes the plus 
+    }
+    //It's a bit more complicated for -
+    else if (tokens[0] == "-"){
+        //Check if the first element of the next token is a number
+        if(isdigit(tokens[1][0])){
+            //If it is, just add the - to the front of the token
+            tokens[1] = tokens[0] + tokens[1];
+            //Then erase the "-" from the vector
+            tokens.erase(tokens.begin());
+        }
+        //If the first element of the next token is a -
+        //Note: If I did the checking of tokens above correctly we shouldn't have to check for + here 
+        else if(tokens[1][0] == "-"){
+            tokens[1].erase(tokens[1].begin());
+            tokens.erase(tokens.begin());
+        }
+    }
+    return tokens;
 }
 string ExpressionEval::run(string express){
     setExp(express);
