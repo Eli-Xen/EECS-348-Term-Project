@@ -14,10 +14,13 @@ private:
 	string originalExpression; 
 	vector<string> tokens; 
 	vector<string> postfix; 
-	vector<string> final; 
+	Node* root; 
+	string final; 
 public: 
+	bool isOperator(string character){return (character == "*" || character == "/" || character =="%" || character == "-" || character == "+" || character == "**");} 
 	vector<string> tokenizer(string expression); 
 	vector<string> postfix(const vector<string>& tokens); 
-	vector<string> expressionTree(const vector<string>& postfix); 
+	Node* expressionTree(const vector<string>& postfix); 
+	string evaluateExpression(Node* root); 
 }; 
 #endif //ends defenition of header file 
