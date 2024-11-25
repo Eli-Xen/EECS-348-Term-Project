@@ -31,7 +31,6 @@ public:
 }; 
 
 
-
 vector<string> Parenthesis::tokenizer(string expression){
 	vector<string> tokens;
     //Set exp as a short hand for the input string 
@@ -95,12 +94,16 @@ vector<string> Parenthesis::postfix(const vector<string>& tokens) //passes vecto
 	return postfix; //return vector directly 
 }
 
-vector<string> Parenthesis::expressionTree(const vector<string>& postfix)
+string Parenthesis::expressionTree(Node node, vector<functions>& functions) //needs to recurse so takes a node and a vector/array of functions (HELP)
 {
-	vector<string> final; //vector that stores result; idk what exactly were returning yet 
-
+    if(!node) //if empty node for any reason 
+        {return '0'; }
+    else if (!node.left && !node.right) //if no children then its an operand and return is value which is a string 
+        {return node.value; }
+    
 
 
 
 	return final; //return vector directly 
 }
+
