@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include <sstream> 
-#include <vector>
+#include <vector> 
+#include <stack>
 
 using namespace std;
 
@@ -28,6 +29,7 @@ public:
     string value; 
     Node* left; 
     Node* right; 
+    Node(const std::string& value) : value(value), left(nullptr), right(nullptr) {} //constructor so it automatically makes the value given the value element 
 }; 
 
 
@@ -94,16 +96,31 @@ vector<string> Parenthesis::postfix(const vector<string>& tokens) //passes vecto
 	return postfix; //return vector directly 
 }
 
-string Parenthesis::expressionTree(Node node, vector<functions>& functions) //needs to recurse so takes a node and a vector/array of functions (HELP)
+Node Parenthesis::expressionTree(const vector<string>& postfix) //needs to recurse so takes a node and a vector/array of functions (HELP)
 {
-    if(!node) //if empty node for any reason 
-        {return '0'; }
-    else if (!node.left && !node.right) //if no children then its an operand and return is value which is a string 
-        {return node.value; }
+	//vector<string> final; //vector that stores result; idk what exactly were returning yet 
+    stack<Node*> tree; //starts a stack that holds nodes 
     
+    for (int i=0; i<postfix.size(); i++)
+    {
+        if(postfix[i]=='+' || postfix[i]=='-' || postfix[i]=='*' || postfix[i]=='/' || postfix[i]=='%' || postfix[i]=='**')
+            {continue; } //continue for now, I put this first becuase token is either an operator or operand and I need to do operand first 
+        else //if token is operator 
+            {tree.push(new Node(postfix[i])); } //we dont need pointer * here because were making a new node and pushing 
+        if(postfix[i]=='+' || postfix[i]=='-' || postfix[i]=='*' || postfix[i]=='/' || postfix[i]=='%' || postfix[i]=='**')
+            {
+                Node* operator=new Node(postfix[i]);
+                Node* right=tree.top(); //it needs pointers to be compatable with tree 
+                tree.pop(); //apparently this doesnt autoamtically return the element so top then pop 
+                Node* left=tree.top(); 
+                tree.pop(); 
+                operator.right=right; //updates the opeartors left and right to be the operands we just popped 
+                operator.left=left; 
+                tree.push(operator); //puts the new operator node onto stack 
 
+            }
+    }   
 
-
-	return final; //return vector directly 
+	return tree.top(); //in theory returns the root/top of the expression tree to then be evaluated 
 }
 
