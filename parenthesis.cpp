@@ -104,20 +104,23 @@ Node Parenthesis::expressionTree(const vector<string>& postfix) //needs to recur
     for (int i=0; i<postfix.size(); i++)
     {
         if(postfix[i]=='+' || postfix[i]=='-' || postfix[i]=='*' || postfix[i]=='/' || postfix[i]=='%' || postfix[i]=='**')
-            {continue; } //continue for now, I put this first becuase token is either an operator or operand and I need to do operand first 
+        {
+            Node* right=tree.top(); //it needs pointers to be compatable with tree 
+            tree.pop(); //apparently this doesnt autoamtically return the element so top then pop 
+            Node* left=tree.top(); 
+            tree.pop(); 
+            Node* newOperator=new Node(postfix[i]);
+            newOperator->right=right; //updates the opeartors left and right to be the operands we just popped 
+            newOperator->left=left; //we use -> when changing elements that pointer points to we have to use -> 
+            tree.push(newOperator); //puts the new operator node onto stack 
+
+        } 
         else //if token is operator 
             {tree.push(new Node(postfix[i])); } //we dont need pointer * here because were making a new node and pushing 
         if(postfix[i]=='+' || postfix[i]=='-' || postfix[i]=='*' || postfix[i]=='/' || postfix[i]=='%' || postfix[i]=='**')
             {
-                Node* operator=new Node(postfix[i]);
-                Node* right=tree.top(); //it needs pointers to be compatable with tree 
-                tree.pop(); //apparently this doesnt autoamtically return the element so top then pop 
-                Node* left=tree.top(); 
-                tree.pop(); 
-                operator.right=right; //updates the opeartors left and right to be the operands we just popped 
-                operator.left=left; 
-                tree.push(operator); //puts the new operator node onto stack 
-
+                
+                
             }
     }   
 
