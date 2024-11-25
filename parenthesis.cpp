@@ -96,34 +96,29 @@ vector<string> Parenthesis::postfix(const vector<string>& tokens) //passes vecto
 	return postfix; //return vector directly 
 }
 
-Node Parenthesis::expressionTree(const vector<string>& postfix) //needs to recurse so takes a node and a vector/array of functions (HELP)
+Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recurse so takes a node and a vector/array of functions (HELP)
 {
 	//vector<string> final; //vector that stores result; idk what exactly were returning yet 
     stack<Node*> tree; //starts a stack that holds nodes 
     
     for (int i=0; i<postfix.size(); i++)
     {
-        if(postfix[i]=='+' || postfix[i]=='-' || postfix[i]=='*' || postfix[i]=='/' || postfix[i]=='%' || postfix[i]=='**')
+        if(postfix[i]=="+" || postfix[i]=="-" || postfix[i]=="*" || postfix[i]=="/" || postfix[i]=="%" || postfix[i]=="**")
         {
+            Node* newOperator=new Node(postfix[i]);
             Node* right=tree.top(); //it needs pointers to be compatable with tree 
             tree.pop(); //apparently this doesnt autoamtically return the element so top then pop 
             Node* left=tree.top(); 
             tree.pop(); 
-            Node* newOperator=new Node(postfix[i]);
+        
             newOperator->right=right; //updates the opeartors left and right to be the operands we just popped 
-            newOperator->left=left; //we use -> when changing elements that pointer points to we have to use -> 
+            newOperator->left=left; //we use -> when changing class elements that pointer points to 
             tree.push(newOperator); //puts the new operator node onto stack 
-
         } 
         else //if token is operator 
             {tree.push(new Node(postfix[i])); } //we dont need pointer * here because were making a new node and pushing 
-        if(postfix[i]=='+' || postfix[i]=='-' || postfix[i]=='*' || postfix[i]=='/' || postfix[i]=='%' || postfix[i]=='**')
-            {
-                
-                
-            }
     }   
-
+    
 	return tree.top(); //in theory returns the root/top of the expression tree to then be evaluated 
 }
 
