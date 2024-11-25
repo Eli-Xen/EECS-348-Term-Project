@@ -3,6 +3,9 @@
 #include <sstream> 
 #include <vector> 
 #include <stack>
+#include <algorithm>
+#include <bits10_1.h>/stdc++.h> //idk why bits autopopulated '10_1.h' after it, might need to be removed
+
 
 using namespace std;
 
@@ -91,9 +94,43 @@ vector<string> Parenthesis::tokenizer(string expression){
 vector<string> Parenthesis::postfix(const vector<string>& tokens) //passes vector by referance but uses const to avoid changes 
 {
 	vector<string> postfix; //vector that stores result 
+    stack<string> stck;
+    
+    //checks token if number, all_of() allows multidigit nums to be used
+    for (const string& token : tokens) {
+        if (all_of(token.begin(), token.end(), ::isdigit)) {
+            postfix.push_back(token);
+        }
+        //operation for opening parenthesis
+        else if (token == "(") {
+            stck.push(token);
+        }
+        //operation for closing parenthesis
+        else if (token == ")") {
+            while (!stck.empty() && stck.top() != "(") {
+                postfix.push_back(stck.top());
+                stck.pop();
+            }
+            //removes the opening parenthesis
+            if (!stck.empty() && stck.top() == "(") {
+                stck.pop();
+            }
+        }
+        //operation if token is operator
+        else {
+            while (!stck.empty() && stck.top() != "(") {
+                postfix.push_back(stck.top());
+                stck.pop();
+            }
+            stck.push(token);
+        }
 
-
-
+    }
+    //pop remaining
+    while (!stck.empty()) {
+        postfix.push_back(stck.top());
+        stck.pop();
+    }
 
 	return postfix; //return vector directly 
 }
