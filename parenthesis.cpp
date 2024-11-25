@@ -15,11 +15,11 @@ private:
 	vector<string> final; //vector expressionTree runs 
 public:
 	//Method to check if a char is an operator
-    bool isOperator(char character){return (character == '*' || character == '/' || character =='%' || character == '-' || character == '+');
+    bool isOperator(string character){return (character == "*" || character == "/" || character =="%" || character == "-" || character == "+" || character == "**");} //this should include ** i think? 
 	//each has pointer to vector it returns 
 	vector<string> tokenizer(string expression); 
 	vector<string> postfix(const vector<string>& tokens); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
-	vector<string> expressionTree(const vector<string>& postfix); 
+	Node* expressionTree(const vector<string>& postfix); 
 };
 
 
@@ -49,7 +49,7 @@ vector<string> Parenthesis::tokenizer(string expression){
         }
         //Check if the current char is a negitive sign
         //We have to do a bit of checking to make sure that its not a minus operation 
-        else if (exp[i] == '-' && (i == 0 || isOperator(exp[i-1]))){
+        else if (exp[i] == '-' && (i == 0 || isOperator(string(1, exp[i-1])))){
             //If it is a negitive sign, we can add it to the token 
             //If the logic works this should always be at the start of a token
             currentToken += exp[i];
@@ -67,7 +67,7 @@ vector<string> Parenthesis::tokenizer(string expression){
             i++;
         }
         //Checks if the current char is a normal one length operator
-        else if (isOperator(exp[i])){
+        else if (isOperator(string(1, exp[i]))){
             //Checks if there is already stuff in the current token 
             if (currentToken != "") {
                 tokens.push_back(currentToken);
@@ -103,7 +103,9 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
     
     for (int i=0; i<postfix.size(); i++)
     {
-        if(postfix[i]=="+" || postfix[i]=="-" || postfix[i]=="*" || postfix[i]=="/" || postfix[i]=="%" || postfix[i]=="**")
+        if(isOperator(postfix[i])) //if token is anything but an operator 
+            {tree.push(new Node(postfix[i])); } 
+        else //if token is operator 
         {
             Node* newOperator=new Node(postfix[i]);
             Node* right=tree.top(); //it needs pointers to be compatable with tree 
@@ -114,9 +116,8 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
             newOperator->right=right; //updates the opeartors left and right to be the operands we just popped 
             newOperator->left=left; //we use -> when changing class elements that pointer points to 
             tree.push(newOperator); //puts the new operator node onto stack 
+            //we dont need pointer * here because were making a new node and pushing 
         } 
-        else //if token is operator 
-            {tree.push(new Node(postfix[i])); } //we dont need pointer * here because were making a new node and pushing 
     }   
     
 	return tree.top(); //in theory returns the root/top of the expression tree to then be evaluated 
