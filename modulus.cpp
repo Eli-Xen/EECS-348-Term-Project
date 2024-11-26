@@ -37,7 +37,8 @@ double Modulus::evaluateModulus(string left, string right){
     //         result = l - r;
     //         return result;
     //     } else if ()
-        result = fmod(l,r); //fmod allows modulus calculation of doubles through cmath
+        result = to_string(fmod(l,r)); //fmod allows modulus calculation of doubles through cmath 
+        
         return result;
     // }
 
