@@ -22,9 +22,10 @@ public:
     bool isOperator(string character){return (character == "*" || character == "/" || character =="%" || character == "-" || character == "+" || character == "**");}  
 	//each has pointer to vector it returns 
 	vector<string> tokenizer(string expression); 
+	vector<string> Parenthesis::cleanToken(vector<string> &tokens);
 	vector<string> postfix(const vector<string>& tokens); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
 	Node* expressionTree(const vector<string>& postfix); 
-    string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
+    	string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
 };
 
 
@@ -52,9 +53,24 @@ vector<string> Parenthesis::tokenizer(string expression){
             //If it is we can add it to our current token
             currentToken += exp[i];
         }
+        else if(exp[i] == '+' && (i-1 ) >= 0 && exp[i-1] == '('){
+            continue;
+        }
+        else if (exp[i] == '(' || exp[i] == ')'){
+            //If there is already an expression in the current token, we clear it 
+            if (currentToken != "") {
+                tokens.push_back(currentToken);
+                currentToken = "";
+            }
+            //Add the parenthesis 
+            tokens.push_back(string(1,exp[i]));
+            currentToken = "";
+
+        }
         //Check if the current char is a negitive sign
         //We have to do a bit of checking to make sure that its not a minus operation 
-        else if (exp[i] == '-' && (i == 0 || isOperator(string(1, exp[i-1])))){
+        //Worlds longest if statment 
+        else if (exp[i] == '-' && currentToken[0] != '-' && (i == 0 || isOperator(string(1, exp[i-1])) || exp[i-1] == '(')){
             //If it is a negitive sign, we can add it to the token 
             //If the logic works this should always be at the start of a token
             currentToken += exp[i];
@@ -79,15 +95,34 @@ vector<string> Parenthesis::tokenizer(string expression){
                 currentToken = "";
             }
             tokens.push_back(string(1,exp[i]));
-
         }
-
     }
     //Pushes the last token to the vector 
     if (currentToken != ""){
         tokens.push_back(currentToken);
     }
+    tokens = cleanToken(tokens);
 	return tokens;
+}
+vector<string> Parenthesis::cleanToken(vector<string> &tokens){
+    //Throw error if we have operations at the end of the expression 
+    if(tokens.size() == 1 && isdigit(tokens[0][0])){
+        return tokens;
+    }
+    if(isOperator(tokens[tokens.size()-1])){
+        //Throw error
+        //Not sure how we want to handle this yet
+    }
+    int i = 0;
+    //Looks for repeated operations in the tokens
+    while(i < tokens.size()){
+        //Checks if the first character in the token is a +
+        if(tokens.size() > 0 && tokens[0] == "+"){
+            tokens.erase(tokens.begin());//Removes the plus 
+        }
+        i++;
+    }
+    return tokens;
 }
 
 
@@ -135,6 +170,7 @@ vector<string> Parenthesis::postfix(const vector<string>& tokens) //passes vecto
 	return postfix; //return vector directly 
 }
 
+
 Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recurse so takes a node and a vector/array of functions (HELP)
 {
 	//vector<string> final; //vector that stores result; idk what exactly were returning yet 
@@ -160,4 +196,43 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
     }   
     
 	return tree.top(); //in theory returns the root/top of the expression tree to then be evaluated 
+}
+
+string Parenthesis:evaluateExpression(Node* root) {
+	//while there are still operators in the tree 
+	//the check for operators  kinda sucks here- taking the values of left and right nodes at index 0
+	//operators would not be digits, while numbers *should* be digits in theory
+	while (root->right()->value()[0].isdigit() == false || root->left()->value()[0].isdigit() == false) { 
+		//traverse to the lowest node that is still an operator
+		if (next->right()->value().isdigit()) {
+			Node* next = root->left();
+		} else
+			Node* next = root->right();
+
+		while (next->right()->value()[0].isdigit() == false || next->left()->value()[0].isdigit() == false) {
+			if (next->right()->value().isdigit()) {
+				next = next->left();
+				continue;
+			}
+			next = next->right();
+		//now... time for evaluatin'
+		//call me YandereDev
+		string evaluatedExpression;
+		if (next->value() == "+" || next->value() == "-")
+			evaluatedExpression = AddSub.validateInput(next->left()->value(), next->value(), next->right()->value());
+		else if (next->value() == "*")
+			//MultDiv doesn't look entirely finished to me so I'll leave this call blank for now
+		else if (next->value() == "/")
+			//ditto
+		else if (next->value() == "%")
+			evaluatedExpression = Modulus.evaluateModulus(next->left()->value(), next->right()->value()); //currently evaluateModulus returns a double
+		else if (next->value() == "**")
+			evaluatedExpression = Expo.evlExponent(next->left()->value(), next->right()->value());
+		else //somethings really bad
+			return -1;
+		//turn next into the evaluated expression
+		next->value() = evaluatedExpression;
+		//this currently doesn't pop the terminal nodes, I don't think it needs to. we'll see
+	}
+	return root->value();
 }
