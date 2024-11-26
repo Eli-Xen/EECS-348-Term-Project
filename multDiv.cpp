@@ -11,16 +11,16 @@ public:
         cout << "Error: Division by zero is not allowed." << endl;
         return -1; // This returns an error value 
     }
-    return left/right; // perform normal division if otherwise
+    return to_string(left/right); // perform normal division if otherwise
   } 
 
     template <typename T> 
     T evaluateMult(T left, T right) {
-        return left * right; // perform normal multiplication
+        return to_string(left * right); // perform normal multiplication
     }
 
 
-    int validateInput(string left, string oper,string right){
+    int validateInput(string left, string oper, string right){
         if (oper != "*" && oper != "/") {
             cout << "Error: Invalid operator, please use '*' or '/' " << endl;
             return -1; // Returns error value 
