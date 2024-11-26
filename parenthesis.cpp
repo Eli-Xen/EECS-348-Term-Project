@@ -199,37 +199,35 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
 }
 
 string Parenthesis:evaluateExpression(Node* root) {
-	//while there still are expressions to be evaluated- don't think i wrote this right
-	while (root.right().value() != null) { 
+	//while there are still expressions in the tree (not just numbers)
+	while (root->right()->value().isdigit() == false || root->left()->value().isdigit() == false) { 
 		//traverse to the lowest node that is still an expression
-		Node* next = root.right();
-		//hopefully these bools are right too
-		while (next.right().value().isdigit() == False) || (next.left().value().isdigit() == False) {
-			if (next.right().value().isdigit()) {
-				next = next.left();
+		Node* next = root->right();
+		//does isdigit work for str of multiple numbers? if it doesn't work, we could do "if value is able to be cast to double" or smth
+		while (next->right()->value().isdigit() == false || next->left()->value().isdigit() == false) {
+			if (next->right()->value().isdigit()) {
+				next = next->left();
 				continue;
 			}
-			next = next.right();
+			next = next->right();
 		//now... time for evaluatin'
 		//call me YandereDev
 		string evaluatedExpression;
-		if (next.value() == "+")
-			evaluatedExpression = AddSub.validateInput(next.left().value(), next.value(), next.right().value());
-		else if (next.value() == "-")
-			evaluatedExpression = AddSub.validateInput(next.left().value(), next.value(), next.right().value());
-		else if (next.value() == "*")
+		if (next->value() == "+" || next->value() == "-")
+			evaluatedExpression = AddSub.validateInput(next->left()->value(), next->value(), next->right()->value());
+		else if (next->value() == "*")
 			//MultDiv doesn't look entirely finished to me, lol, so I'll leave this call blank for now
-		else if (next.value() == "/")
+		else if (next->value() == "/")
 			//ditto
-		else if (next.value() == "%")
-			evaluatedExpression = Modulus.evaluateModulus(next.left().value(), next.right().value()); //currently evaluateModulus returns a double
-		else if (next.value() == "**")
-			evaluatedExpression = Expo.evlExponent(next.left().value(), next.right().value());
+		else if (next->value() == "%")
+			evaluatedExpression = Modulus.evaluateModulus(next->left()->value(), next->right()->value()); //currently evaluateModulus returns a double
+		else if (next->value() == "**")
+			evaluatedExpression = Expo.evlExponent(next->left()->value(), next->right()->value());
 		else //somethings really bad
 			return -1;
 		//turn next into the evaluated expression
-		next.value() = evaluatedExpression;
+		next->value() = evaluatedExpression;
 		//this currently doesn't pop the terminal nodes, I don't think it needs to. we'll see
 	}
-	return root.value();
+	return root->value();
 }
