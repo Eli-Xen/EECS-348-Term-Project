@@ -12,7 +12,7 @@ private:
     string expression;
 
 public:
-    double evaluateModulus(string left, string right);
+    string evaluateModulus(string left, string right);
 
     //Function for checking if the data is vaild
     //For example, if negitive values are passes in we need to do some preprocessing
@@ -21,7 +21,7 @@ public:
 
 };
 
-double Modulus::evaluateModulus(string left, string right){
+string Modulus::evaluateModulus(string left, string right){
     double l = stod(left);
     double r = stod(right);
     double result = 0.0;
@@ -38,7 +38,8 @@ double Modulus::evaluateModulus(string left, string right){
     //         return result;
     //     } else if ()
         result = fmod(l,r); //fmod allows modulus calculation of doubles through cmath
-        return result;
+        string s_result = to_string(result);
+        return s_result;
     // }
 
 }
