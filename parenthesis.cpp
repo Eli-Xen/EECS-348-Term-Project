@@ -25,7 +25,7 @@ public:
 	vector<string> Parenthesis::cleanToken(vector<string> &tokens);
 	vector<string> postfix(const vector<string>& tokens); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
 	Node* expressionTree(const vector<string>& postfix); 
-    string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
+    	string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
 };
 
 
@@ -196,4 +196,40 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
     }   
     
 	return tree.top(); //in theory returns the root/top of the expression tree to then be evaluated 
+}
+
+string Parenthesis:evaluateExpression(Node* root) {
+	//while there still are expressions to be evaluated- don't think i wrote this right
+	while (root.right().value() != null) { 
+		//traverse to the lowest node that is still an expression
+		Node* next = root.right();
+		//hopefully these bools are right too
+		while (next.right().value().isdigit() == False) || (next.left().value().isdigit() == False) {
+			if (next.right().value().isdigit()) {
+				next = next.left();
+				continue;
+			}
+			next = next.right();
+		//now... time for evaluatin'
+		//call me YandereDev
+		string evaluatedExpression;
+		if (next.value() == "+")
+			evaluatedExpression = AddSub.validateInput(next.left().value(), next.value(), next.right().value());
+		else if (next.value() == "-")
+			evaluatedExpression = AddSub.validateInput(next.left().value(), next.value(), next.right().value());
+		else if (next.value() == "*")
+			//MultDiv doesn't look entirely finished to me, lol, so I'll leave this call blank for now
+		else if (next.value() == "/")
+			//ditto
+		else if (next.value() == "%")
+			evaluatedExpression = Modulus.evaluateModulus(next.left().value(), next.right().value()); //currently evaluateModulus returns a double
+		else if (next.value() == "**")
+			evaluatedExpression = Expo.evlExponent(next.left().value(), next.right().value());
+		else //somethings really bad
+			return -1;
+		//turn next into the evaluated expression
+		next.value() = evaluatedExpression;
+		//this currently doesn't pop the terminal nodes, I don't think it needs to. we'll see
+	}
+	return root.value();
 }
