@@ -199,12 +199,17 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
 }
 
 string Parenthesis:evaluateExpression(Node* root) {
-	//while there are still expressions in the tree (not just numbers)
-	while (root->right()->value().isdigit() == false || root->left()->value().isdigit() == false) { 
-		//traverse to the lowest node that is still an expression
-		Node* next = root->right();
-		//does isdigit work for str of multiple numbers? if it doesn't work, we could do "if value is able to be cast to double" or smth
-		while (next->right()->value().isdigit() == false || next->left()->value().isdigit() == false) {
+	//while there are still operators in the tree 
+	//the check for operators  kinda sucks here- taking the values of left and right nodes at index 0
+	//operators would not be digits, while numbers *should* be digits in theory
+	while (root->right()->value()[0].isdigit() == false || root->left()->value()[0].isdigit() == false) { 
+		//traverse to the lowest node that is still an operator
+		if (next->right()->value().isdigit()) {
+			Node* next = root->left();
+		} else
+			Node* next = root->right();
+
+		while (next->right()->value()[0].isdigit() == false || next->left()->value()[0].isdigit() == false) {
 			if (next->right()->value().isdigit()) {
 				next = next->left();
 				continue;
@@ -216,7 +221,7 @@ string Parenthesis:evaluateExpression(Node* root) {
 		if (next->value() == "+" || next->value() == "-")
 			evaluatedExpression = AddSub.validateInput(next->left()->value(), next->value(), next->right()->value());
 		else if (next->value() == "*")
-			//MultDiv doesn't look entirely finished to me, lol, so I'll leave this call blank for now
+			//MultDiv doesn't look entirely finished to me so I'll leave this call blank for now
 		else if (next->value() == "/")
 			//ditto
 		else if (next->value() == "%")
