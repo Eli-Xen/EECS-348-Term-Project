@@ -171,14 +171,14 @@ vector<string> Parenthesis::postfix(const vector<string>& tokens) //passes vecto
 }
 
 
-Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recurse so takes a node and a vector/array of functions (HELP)
+Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recurse so takes a node and a vector 
 {
 	//vector<string> final; //vector that stores result; idk what exactly were returning yet 
     stack<Node*> tree; //starts a stack that holds nodes 
     
     for (int i=0; i<postfix.size(); i++)
     {
-        if(isOperator(postfix[i])) //if token is anything but an operator 
+        if(!isOperator(postfix[i])) //if token is anything but an operator 
             {tree.push(new Node(postfix[i])); } 
         else //if token is operator 
         {
@@ -198,41 +198,58 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
 	return tree.top(); //in theory returns the root/top of the expression tree to then be evaluated 
 }
 
-string Parenthesis:evaluateExpression(Node* root) {
+string Parenthesis::evaluateExpression(Node* root) 
+{
 	//while there are still operators in the tree 
 	//the check for operators  kinda sucks here- taking the values of left and right nodes at index 0
 	//operators would not be digits, while numbers *should* be digits in theory
-	while (root->right()->value()[0].isdigit() == false || root->left()->value()[0].isdigit() == false) { 
-		//traverse to the lowest node that is still an operator
-		if (next->right()->value().isdigit()) {
-			Node* next = root->left();
-		} else
-			Node* next = root->right();
+    Node* current=root; 
+	//while (!isdigit(root->right->value[0]) || !isdigit(root->left->value[0])) //while right and left values are not digits??? 
+    //traverse to the lowest node that is still an operator
 
-		while (next->right()->value()[0].isdigit() == false || next->left()->value()[0].isdigit() == false) {
-			if (next->right()->value().isdigit()) {
-				next = next->left();
-				continue;
-			}
-			next = next->right();
-		//now... time for evaluatin'
-		//call me YandereDev
-		string evaluatedExpression;
-		if (next->value() == "+" || next->value() == "-")
-			evaluatedExpression = AddSub.validateInput(next->left()->value(), next->value(), next->right()->value());
-		else if (next->value() == "*")
-			//MultDiv doesn't look entirely finished to me so I'll leave this call blank for now
-		else if (next->value() == "/")
-			//ditto
-		else if (next->value() == "%")
-			evaluatedExpression = Modulus.evaluateModulus(next->left()->value(), next->right()->value()); //currently evaluateModulus returns a double
-		else if (next->value() == "**")
-			evaluatedExpression = Expo.evlExponent(next->left()->value(), next->right()->value());
-		else //somethings really bad
-			return -1;
-		//turn next into the evaluated expression
-		next->value() = evaluatedExpression;
-		//this currently doesn't pop the terminal nodes, I don't think it needs to. we'll see
-	}
+    if(!current) //base case, if current is null it returns 
+        return ""; 
+    else if ()
+    else if (isdigit(current->left->value[0]) && isdigit(current->right->value[0])); //if both left and right are digits
+
+
+
+    else if(isdigit(current->right->value[0]))//if the next's right value is a digit... //isgdigit only takes char so to checks if first
+        Node* current = current->left; //traverse left 
+    else 
+        Node* current = current->right; //traverse left 
+
+
+
+    if (isdigit(next->right->value)) //if the next's right value is a digit... 
+        Node* next = root->left(); //traverse left 
+    else
+        Node* next = root->right();
+    while (!isdigit(next->right->value[0]) || !isdigit(next->left->value[0])) 
+    {
+        if (isdigit(next->right->value)) 
+        {
+            next = next->left;
+            continue;
+        }
+        next = next->right();
+    //now... time for evaluating 
+    string evaluatedExpression;
+    if (next->value == "+" || next->value == "-")
+        evaluatedExpression = AddSub.evalAddSub(next->left->value, next->value, next->right->value);
+    else if (next->value == "*")
+        evaluatedExpression = multDiv.evaluateMult(next->left->value, next->right->value);
+    else if (next->value == "/")
+        evaluatedExpression = multDiv.evaluateDiv(next->left->value, next->right->value);
+    else if (next->value== "%")
+        evaluatedExpression = Modulus.evaluateModulus(next->left->value, next->right->value); 
+    else if (next->value == "**")
+        evaluatedExpression = Expo.evlExponent(next->left->value, next->right->value);
+    else //somethings really bad
+        return "error in evaluateExpression";
+    //turn next into the evaluated expression
+    next->value() = evaluatedExpression;
+    //this currently doesn't pop the terminal nodes, I don't think it needs to. we'll see
+
 	return root->value();
 }
