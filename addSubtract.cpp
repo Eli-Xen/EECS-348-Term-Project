@@ -9,12 +9,12 @@ private:
 
 public:
     
-    string validateInput(string left, string operation, string right);
+    string evalAddSub(string left, string operation, string right);
 
 };
 
 
-string AddSub::validateInput(string left, string operation, string right){
+string AddSub::evalAddSub(string left, string operation, string right){
     try {
         //converts to double
         double double_left = stod(left);
