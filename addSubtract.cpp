@@ -4,13 +4,8 @@
 using namespace std;
 
 class AddSub {
-private:
-    
-
 public:
-    
     string evalAddSub(string left, string operation, string right);
-
 };
 
 
