@@ -4,16 +4,11 @@
 #include <sstream> 
 using namespace std;
 
-class Expo {
-private: 
-    string expression; //considering deleting this since we dont use it 
-
+class Expo 
+{
 public:
-    string evlExponent(string base, string power)
-    //template <typename T> T evlExponent(T base, T power);
-    //https://www.geeksforgeeks.org/cpp-string-to-float-double-and-vice-versa/# 
+    string evlExponent(string base, string power)//https://www.geeksforgeeks.org/cpp-string-to-float-double-and-vice-versa/# 
 };
-
 
 string Expo::evlExponent(string base, string power) {
 //takes in operand and left (base) and right (exponent) 
