@@ -12,5 +12,4 @@ class Expo
 public:
     string evlExponent(string base, string power)//https://www.geeksforgeeks.org/cpp-string-to-float-double-and-vice-versa/# 
 };
-string Expo::evlExponent(string base, string power); 
 #endif //ends defenition of header file 
