@@ -51,10 +51,10 @@ a method later that will be used to stop the program, leaving logic here*/
     double l = stod(left);
     double r = stod(right);
     if (r == 0.0) { //checks division by zero
-        cerr; 
+        return -1; 
         //cerr needs to be followed by an error message, correct? same with the one two lines below. not super certain how it works so i might be wrong
     } else if (l < 0.0 || r < 0.0) {    //checks if any operands are negative
-        cerr;
+        return -1;
     } else {
         return 0;
     }
