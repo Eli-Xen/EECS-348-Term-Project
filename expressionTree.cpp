@@ -206,21 +206,28 @@ string Parenthesis::evaluateExpression(Node* root)
     Node* current=root; 
 	//while (!isdigit(root->right->value[0]) || !isdigit(root->left->value[0])) //while right and left values are not digits??? 
     //traverse to the lowest node that is still an operator
+    while(!isdigit(root->value[0])) //until the root is a digit //isgdigit only takes char so to checks if first 
+    {
+        if(!current) //base case, if current is null it returns 
+            return ""; 
+        else if (!isdigit(current->left->value[0])) //if left is operator... 
+            current=current->left; //...traverse left 
+        else if (!isdigit(current->right->value[0])) //if left is operator...
+            current=current->right; //..traverse right 
+        else if (isdigit(current->left->value[0]) && isdigit(current->right->value[0])); //if both left and right are digits then use current value to evaluate 
+            if (current->value=="+" || current->value=="-")
+                current->value=addSubtract.evalAddSub(current->left->value, current->value, current->right->value);
+            else if (current->value=="*" || current->value=="/")
+                current->value=multDiv.evalMultDiv(current->left->value, current->value, current->right->value); //function name might change so check this 
+            else if (current->value=="%")
+                current->value=modulus.evaluateModulus(current->left->value, current->right->value); 
+            else if (current->value=="**")
+                current->value=expo.evlExponent(current->left->value, current->right->value);
+            else //somethings really bad
+                return "error in evaluateExpression"; 
+    } 
 
-    if(!current) //base case, if current is null it returns 
-        return ""; 
-    else if ()
-    else if (isdigit(current->left->value[0]) && isdigit(current->right->value[0])); //if both left and right are digits
-
-
-
-    else if(isdigit(current->right->value[0]))//if the next's right value is a digit... //isgdigit only takes char so to checks if first
-        Node* current = current->left; //traverse left 
-    else 
-        Node* current = current->right; //traverse left 
-
-
-
+/*
     if (isdigit(next->right->value)) //if the next's right value is a digit... 
         Node* next = root->left(); //traverse left 
     else
@@ -250,6 +257,8 @@ string Parenthesis::evaluateExpression(Node* root)
     //turn next into the evaluated expression
     next->value() = evaluatedExpression;
     //this currently doesn't pop the terminal nodes, I don't think it needs to. we'll see
+*/ 
 
-	return root->value();
+
+	return root->value;
 }
