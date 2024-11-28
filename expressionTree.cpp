@@ -200,21 +200,17 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
 
 string Parenthesis::evaluateExpression(Node* root) 
 {
-	//while there are still operators in the tree 
-	//the check for operators  kinda sucks here- taking the values of left and right nodes at index 0
-	//operators would not be digits, while numbers *should* be digits in theory
+    if (!root) return "error: empty tree"; //if root is nullptr or doesnt exist 
     Node* current=root; 
-	//while (!isdigit(root->right->value[0]) || !isdigit(root->left->value[0])) //while right and left values are not digits??? 
-    //traverse to the lowest node that is still an operator
-    while(!isdigit(root->value[0])) //until the root is a digit //isgdigit only takes char so to checks if first 
+    while(!(isdigit(root->value[0]) || root->value[0]=='e')) //until the root is a digit or returns error //isgdigit only takes char so to checks if first char in string is digit 
     {
-        if(!current) //base case, if current is null it returns 
-            return ""; 
-        else if (!isdigit(current->left->value[0])) //if left is operator... 
-            current=current->left; //...traverse left 
-        else if (!isdigit(current->right->value[0])) //if left is operator...
-            current=current->right; //..traverse right 
-        else if (isdigit(current->left->value[0]) && isdigit(current->right->value[0])); //if both left and right are digits then use current value to evaluate 
+        if (!current) return ""; //base case, if current is null 
+        else if (current->left && !isdigit(current->left->value[0])) //if left exists and is operator (so doesnt check nonexistent node and cause error)... 
+            {current=current->left; } //...traverse left 
+        else if (current->right && !isdigit(current->right->value[0])) //if right exists and is operator...
+            {current=current->right; } //..traverse right 
+        else if (current->left && current->right && isdigit(current->left->value[0]) && isdigit(current->right->value[0])) //if both left and right exist and are digits then use current value (operator) to evaluate 
+        {
             if (current->value=="+" || current->value=="-")
                 current->value=addSubtract.evalAddSub(current->left->value, current->value, current->right->value);
             else if (current->value=="*" || current->value=="/")
@@ -222,43 +218,13 @@ string Parenthesis::evaluateExpression(Node* root)
             else if (current->value=="%")
                 current->value=modulus.evaluateModulus(current->left->value, current->right->value); 
             else if (current->value=="**")
-                current->value=expo.evlExponent(current->left->value, current->right->value);
-            else //somethings really bad
-                return "error in evaluateExpression"; 
-    } 
-
-/*
-    if (isdigit(next->right->value)) //if the next's right value is a digit... 
-        Node* next = root->left(); //traverse left 
-    else
-        Node* next = root->right();
-    while (!isdigit(next->right->value[0]) || !isdigit(next->left->value[0])) 
-    {
-        if (isdigit(next->right->value)) 
-        {
-            next = next->left;
-            continue;
+                current->value=expo.evlExponent(current->left->value, current->right->value); 
+            else 
+                return "error: unknown operand"; 
         }
-        next = next->right();
-    //now... time for evaluating 
-    string evaluatedExpression;
-    if (next->value == "+" || next->value == "-")
-        evaluatedExpression = AddSub.evalAddSub(next->left->value, next->value, next->right->value);
-    else if (next->value == "*")
-        evaluatedExpression = multDiv.evaluateMult(next->left->value, next->right->value);
-    else if (next->value == "/")
-        evaluatedExpression = multDiv.evaluateDiv(next->left->value, next->right->value);
-    else if (next->value== "%")
-        evaluatedExpression = Modulus.evaluateModulus(next->left->value, next->right->value); 
-    else if (next->value == "**")
-        evaluatedExpression = Expo.evlExponent(next->left->value, next->right->value);
-    else //somethings really bad
-        return "error in evaluateExpression";
-    //turn next into the evaluated expression
-    next->value() = evaluatedExpression;
-    //this currently doesn't pop the terminal nodes, I don't think it needs to. we'll see
-*/ 
-
+        else return "error: evaluateExpression"; //somethings really bad
+            
+    } 
 
 	return root->value;
 }
