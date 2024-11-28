@@ -22,6 +22,8 @@ public:
 };
 
 string Modulus::evaluateModulus(string left, string right){
+    if (validateInput(left, right)==-1) //validate input first within 
+        return "error: invalid operands for modulus" 
     double l = stod(left);
     double r = stod(right);
     double result = 0.0;
