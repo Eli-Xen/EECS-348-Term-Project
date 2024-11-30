@@ -4,8 +4,6 @@
 #include <vector> 
 #include <stack>
 #include <algorithm>
-//#include <bits10_1.h>/stdc++.h> //idk why bits autopopulated '10_1.h' after it, might need to be removed
-
 
 using namespace std;
 
@@ -126,49 +124,66 @@ vector<string> Parenthesis::cleanToken(vector<string> &tokens){
 }
 
 
-vector<string> Parenthesis::postfix(const vector<string>& tokens) //passes vector by referance but uses const to avoid changes 
-{
-	vector<string> postfix; //vector that stores result 
-    stack<string> stck;
-    
-    //checks token if number, all_of() allows multidigit nums to be used
-    for (const string& token : tokens) {
-        if (all_of(token.begin(), token.end(), ::isdigit)) {
-            postfix.push_back(token);
-        }
-        //operation for opening parenthesis
-        else if (token == "(") {
-            stck.push(token);
-        }
-        //operation for closing parenthesis
-        else if (token == ")") {
-            while (!stck.empty() && stck.top() != "(") {
-                postfix.push_back(stck.top());
-                stck.pop();
-            }
-            //removes the opening parenthesis
-            if (!stck.empty() && stck.top() == "(") {
-                stck.pop();
-            }
-        }
-        //operation if token is operator
-        else {
-            while (!stck.empty() && stck.top() != "(") {
-                postfix.push_back(stck.top());
-                stck.pop();
-            }
-            stck.push(token);
-        }
+vector<string> Parenthesis::postfix(const vector<string>& tokens) {
+    vector<string> postfix; // This will store the resulting postfix expression
+    stack<string> stck;     // This stack helps manage operators and parentheses
 
+    // Helper function for operator precedence
+    int precedence(const string& op) {
+        if (op == "**") return 3; // Highest precedence for exponentiation
+        if (op == "*" || op == "/" || op == "%") return 2; // Medium precedence
+        if (op == "+" || op == "-") return 1; // Lowest precedence
+        return 0; // Default for parentheses or unknown operators
+    }   // Basically the four lines of code will help out with PEMDAS rules
+
+    // Helper function to check if a token is a number
+    bool isNumber(const string& token) {
+        for (char c : token) {
+            if (!isdigit(c)) {
+                return false; // If any character is not a digit, it's not a number
+            } // in other words, this will loop over each characther in the string token, and if each characther in the string is a digit number, it returns true, otherwise false
+        }
+        return true; // All characters are digits
     }
-    //pop remaining
+
+    // Main loop for converting infix to postfix
+    for (int i = 0; i < tokens.size(); i++) {
+        string token = tokens[i]; // Get the current token
+
+        if (isNumber(token)) {
+            // If the token is a number, add it to the postfix expression
+            postfix.push_back(token);
+        } else if (token == "(") {
+            // If the token is an opening parenthesis, push it onto the stack
+            stck.push(token);
+        } else if (token == ")") {
+            // If the token is a closing parenthesis, pop until an opening parenthesis is found
+            while (!stck.empty() && stck.top() != "(") {
+                postfix.push_back(stck.top());
+                stck.pop();
+            }
+            if (!stck.empty() && stck.top() == "(") {
+                stck.pop(); // Remove the opening parenthesis
+            }
+        } else if (isOperator(token)) {
+            // If the token is an operator, manage precedence
+            while (!stck.empty() && precedence(stck.top()) >= precedence(token)) {
+                postfix.push_back(stck.top());
+                stck.pop();
+            }
+            stck.push(token); // Push the current operator onto the stack
+        }
+    }
+
+    // Pop all remaining operators from the stack
     while (!stck.empty()) {
         postfix.push_back(stck.top());
         stck.pop();
     }
-
-	return postfix; //return vector directly 
+// push back will push back tokens to the end of the postfix vector 
+    return postfix; // Return the resulting postfix expression
 }
+
 
 
 Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recurse so takes a node and a vector 
