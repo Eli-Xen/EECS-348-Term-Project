@@ -4,42 +4,15 @@
 #include <vector> 
 #include <stack>
 #include <algorithm>
+#include "expressionTree.h"
+#include "addSubtract.h"
+#include "multDiv.h"
+#include "expo.h"
+#include "modulus.h"
+
 //#include <bits10_1.h>/stdc++.h> //idk why bits autopopulated '10_1.h' after it, might need to be removed
 
-
-using namespace std;
-
-class Parenthesis {
-private:
-	//A varable to store the clean input after InputProcessor is called
-	string originalExpression; //original string expression after inputProcessor does its thing
-	vector<string> tokens; //vector that holds tokens after tokenizer runs 
-	vector<string> postfix; //vector that holds postfix toekns expression after postfix runs 
-	Node* root; //vector expressionTree runs 
-    string final; 
-public:
-	//Method to check if a char is an operator
-    bool isOperator(string character){return (character == "*" || character == "/" || character =="%" || character == "-" || character == "+" || character == "**");}  
-	//each has pointer to vector it returns 
-	vector<string> tokenizer(string expression); 
-	vector<string> Parenthesis::cleanToken(vector<string> &tokens);
-	vector<string> postfix(const vector<string>& tokens); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
-	Node* expressionTree(const vector<string>& postfix); 
-    	string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
-};
-
-
-class Node //cute little binary node class right here! 
-{
-public: 
-    string value; 
-    Node* left; 
-    Node* right; 
-    Node(const std::string& value) : value(value), left(nullptr), right(nullptr) {} //constructor so it automatically makes the value given the value element 
-}; 
-
-
-vector<string> Parenthesis::tokenizer(string expression){
+vector<string> ExpressionTree::tokenizer(string expression){
 	vector<string> tokens;
     //Set exp as a short hand for the input string 
     string exp = expression;
@@ -104,7 +77,7 @@ vector<string> Parenthesis::tokenizer(string expression){
     tokens = cleanToken(tokens);
 	return tokens;
 }
-vector<string> Parenthesis::cleanToken(vector<string> &tokens){
+vector<string> ExpressionTree::cleanToken(vector<string> &tokens){
     //Throw error if we have operations at the end of the expression 
     if(tokens.size() == 1 && isdigit(tokens[0][0])){
         return tokens;
@@ -126,7 +99,7 @@ vector<string> Parenthesis::cleanToken(vector<string> &tokens){
 }
 
 
-vector<string> Parenthesis::postfix(const vector<string>& tokens) //passes vector by referance but uses const to avoid changes 
+vector<string> ExpressionTree::postFix(const vector<string>& tokens) //passes vector by referance but uses const to avoid changes 
 {
 	vector<string> postfix; //vector that stores result 
     stack<string> stck;
@@ -171,7 +144,7 @@ vector<string> Parenthesis::postfix(const vector<string>& tokens) //passes vecto
 }
 
 
-Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recurse so takes a node and a vector 
+Node* ExpressionTree::expressionTree(const vector<string>& postfix) //needs to recurse so takes a node and a vector 
 {
 	//vector<string> final; //vector that stores result; idk what exactly were returning yet 
     stack<Node*> tree; //starts a stack that holds nodes 
@@ -198,7 +171,7 @@ Node* Parenthesis::expressionTree(const vector<string>& postfix) //needs to recu
 	return tree.top(); //in theory returns the root/top of the expression tree to then be evaluated 
 }
 
-string Parenthesis::evaluateExpression(Node* root) 
+string ExpressionTree::evaluateExpression(Node* root) 
 {
     if (!root) return "error: empty tree"; //if root is nullptr or doesnt exist 
     Node* current=root; 
@@ -211,15 +184,23 @@ string Parenthesis::evaluateExpression(Node* root)
             {current=current->right; } //..traverse right 
         else if (current->left && current->right && isdigit(current->left->value[0]) && isdigit(current->right->value[0])) //if both left and right exist and are digits then use current value (operator) to evaluate 
         {
-            if (current->value=="+" || current->value=="-")
+            if (current->value=="+" || current->value=="-"){
+                AddSub addSubtract;
                 current->value=addSubtract.evalAddSub(current->left->value, current->value, current->right->value);
-            else if (current->value=="*" || current->value=="/")
+            }
+            else if (current->value=="*" || current->value=="/"){
+                MultDiv multDiv;
                 current->value=multDiv.evalMultDiv(current->left->value, current->value, current->right->value); //function name might change so check this 
-            else if (current->value=="%")
+            }
+            else if (current->value=="%"){
+                Modulus modulus;
                 current->value=modulus.evaluateModulus(current->left->value, current->right->value); 
-            else if (current->value=="**")
+            }
+            else if (current->value=="**"){
+                Expo expo;
                 current->value=expo.evlExponent(current->left->value, current->right->value); 
-            else 
+            }
+            else
                 return "error: unknown operand"; 
         }
         else return "error: evaluateExpression"; //somethings really bad
@@ -227,4 +208,16 @@ string Parenthesis::evaluateExpression(Node* root)
     } 
 
 	return root->value;
+}
+
+
+string ExpressionTree::run(string expression){
+    cout << "ExpressionTree run" << endl;
+    ExpressionTree runObject;
+    vector<string> tokens = runObject.tokenizer(expression);
+    cout << endl;
+    Node * tree = runObject.expressionTree(tokens);
+    string result = runObject.evaluateExpression(tree);
+    cout << result<<endl;
+    return result;
 }

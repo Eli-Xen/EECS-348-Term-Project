@@ -5,10 +5,8 @@
 #include <string> //so we can return strings from functions 
 using namespace std;
 
-class AddSub{
+class AddSub {
 public:
-    
-    string validateInput(string left, string operation, string right);
-    
+    string evalAddSub(string left, string operation, string right);
 };
 #endif //ends defenition of header file 

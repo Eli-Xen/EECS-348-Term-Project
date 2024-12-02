@@ -3,11 +3,6 @@
 #include <string>
 using namespace std;
 
-class MultDiv {
-public:
-    string evalMultDiv(string left, string operation, string right);
-};
-
 string MultDiv::evalMultDiv(string left, string operation, string right) {
     // Convert strings to doubles
     double double_left = stod(left);

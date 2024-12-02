@@ -8,19 +8,35 @@
 #include <vector>
 using namespace std; 
 
-class Parenthesis
+class Node //cute little binary node class right here! 
 {
-private:
-	string originalExpression; 
-	vector<string> tokens; 
-	vector<string> postfix; 
-	Node* root; 
-	string final; 
 public: 
-	bool isOperator(string character){return (character == "*" || character == "/" || character =="%" || character == "-" || character == "+" || character == "**");} 
-	vector<string> tokenizer(string expression); 
-	vector<string> postfix(const vector<string>& tokens); 
-	Node* expressionTree(const vector<string>& postfix); 
-	string evaluateExpression(Node* root); 
+    string value; 
+    Node* left; 
+    Node* right; 
+    Node(const std::string& value) : value(value), left(nullptr), right(nullptr) {} //constructor so it automatically makes the value given the value element 
 }; 
-#endif //ends defenition of header file 
+
+class ExpressionTree {
+private:
+	//A varable to store the clean input after InputProcessor is called
+	string originalExpression; //original string expression after inputProcessor does its thing
+	vector<string> tokens; //vector that holds tokens after tokenizer runs 
+	vector<string> postfix; //vector that holds postfix toekns expression after postfix runs 
+	Node* root; //vector expressionTree runs 
+    string final; 
+public:
+    string run(string expression);
+	//Method to check if a char is an operator
+    bool isOperator(string character){return (character == "*" || character == "/" || character =="%" || character == "-" || character == "+" || character == "**");}  
+	//each has pointer to vector it returns 
+	vector<string> tokenizer(string expression); 
+	vector<string> cleanToken(vector<string> &tokens);
+	vector<string> postFix(const vector<string>& tokens); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
+	Node* expressionTree(const vector<string>& postfix); 
+    	string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
+};
+
+
+#endif // PARENTHESIS_H
+

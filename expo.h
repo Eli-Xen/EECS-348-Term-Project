@@ -10,6 +10,6 @@ using namespace std;
 class Expo 
 {
 public:
-    string evlExponent(string base, string power)//https://www.geeksforgeeks.org/cpp-string-to-float-double-and-vice-versa/# 
+    string evlExponent(string base, string power);//https://www.geeksforgeeks.org/cpp-string-to-float-double-and-vice-versa/# 
 };
 #endif //ends defenition of header file 

@@ -5,12 +5,17 @@
 #include <string> //so we can return strings from functions 
 using namespace std;
 
-class Modulus
-{
+class Modulus {
 private:
-	string expression;
-public: 
-	int evaluateModulus(int left, int right);
-	int validateInput(string left, string right); 
-}; 
+    string expression;
+
+public:
+    string evaluateModulus(string left, string right);
+
+    //Function for checking if the data is vaild
+    //For example, if negitive values are passes in we need to do some preprocessing
+    //Also we can convert the string into ints here
+    int validateInput(string left, string right);
+
+};
 #endif //ends defenition of header file 

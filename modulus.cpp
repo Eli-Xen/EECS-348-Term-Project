@@ -5,25 +5,10 @@
 #include <cmath>
 using namespace std;
 
-class Modulus {
-private:
-    //I'm not sure what type of data we want to pass into these classes
-    //For now I left it as string. Feel free to change as needed
-    string expression;
-
-public:
-    string evaluateModulus(string left, string right);
-
-    //Function for checking if the data is vaild
-    //For example, if negitive values are passes in we need to do some preprocessing
-    //Also we can convert the string into ints here
-    int validateInput(string left, string right);
-
-};
 
 string Modulus::evaluateModulus(string left, string right){
     if (validateInput(left, right)==-1) //validate input first within 
-        return "error: invalid operands for modulus" 
+        return "error: invalid operands for modulus";
     double l = stod(left);
     double r = stod(right);
     double result = 0.0;
