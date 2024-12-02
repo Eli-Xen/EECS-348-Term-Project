@@ -5,40 +5,11 @@
 #include "inputProcessor.h" //header file for this file
 using namespace std;
 
-class InputProcessor {
-private:
-	//put the string in here
-        //Varable to store the input from terminal
-	string input;
-
-public:
-	// 1. Read values from stdin into a private variable input
-	void getInput();
-
-	// 2. Clean input str
-	void cleanInput();
-
-	// 3. Check input str
-	int checkInput();
-
-	//could also make a run function
-	string run();
-
-	//setter (defined in class)
-	void setStrInput(string data){
-		input = data;
-	}
-	//getter (defined in class)
-	string getStrInput(){
-		return input;
-	}
-	
-};
-
 string InputProcessor::run(){
 	getInput();
 	cleanInput();
 	int check = checkInput();
+	cout << check;
 	switch (check) {
 		case -1:
 			//this means user wants to quit: returns empty str
@@ -46,8 +17,7 @@ string InputProcessor::run(){
 			break;
 		case 0:
 			//validation was successful
-			cleanString = getStrInput();
-			return cleanString;
+			return getStrInput();
 			break;
 		case 1:
 			//error occurred
@@ -83,22 +53,22 @@ void InputProcessor::cleanInput() {
 
 int InputProcessor::checkInput(){
 	string tempStorage = getStrInput();
-	if (tempStorage == "q") || (tempStorage == "Q") //to quit program
+	if (tempStorage == "q" || tempStorage == "Q") //to quit program
 		return -1; //sends to run function and returns to main to indicate quit 
 	for (int i = 0; i < tempStorage.length(); i++) {
 		//converts to ascii
-		if (36 < int(tempStorage[i]) < 58) {
+		if (36 < int(tempStorage[i]) && int(tempStorage[i]) < 58) {
 			//means its either a number or mostly valid numerical chars
-			if (tempStorage[i] != "'" && tempStorage[i] != "," && tempStorage[i] != "-") {
+			if (tempStorage[i] != '\'' && tempStorage[i] != ',' && tempStorage[i] != '-') {
 				//chars are all valid
 				//now testing if two invalid operators r placed together
 				//doesn't check if the final char is adjacent (what does this mean, past lily?)
 				if (i == tempStorage.length()-1)
 					continue;
 				//if the slice is a non-number and the next slice is a non-number
-				if (int(tempStorage[i] < 48 ) && (int(tempStorage[i+1] < 48) {
+				if (36 < int(tempStorage[i]) && int(tempStorage[i]) < 58) {
 					//if any of these two are placed side by side, its valid, so it continues
-					if ((tempStorage[i] == "*" && tempStorage[i+1] == "*" )|| (tempStorage[i] == ")" && tempStorage[i+1] == ")" )|| (tempStorage[i] == "(" && tempStorage[i+1] == "("))
+					if ((tempStorage[i] == '*' && tempStorage[i+1] == '*' )|| (tempStorage[i] == ')' && tempStorage[i+1] == ')' )|| (tempStorage[i] == '(' && tempStorage[i+1] == '('))
 						continue;
 					else
 						return 1;
@@ -114,7 +84,5 @@ int InputProcessor::checkInput(){
 	//all chars validated successfully
 	return 0;
 }
-
-
 
 

@@ -5,15 +5,35 @@
 #include <string> //so we can return strings from functions 
 using namespace std;
 
-class InputProcessor
-{
+class InputProcessor {
 private:
-	string uncleanInput;
-public: 
-	string getInput();
-	int cleanInput(string);
-	int checkInput(string);
-	void setUncleanInput(string data); //setter 
-	string getUncleanInput(); //getter
-}; 
-#endif //ends defenition of header file 
+	//put the string in here
+        //Varable to store the input from terminal
+	string input;
+
+public:
+	InputProcessor(){}
+	// 1. Read values from stdin into a private variable input
+	void getInput();
+
+	// 2. Clean input str
+	void cleanInput();
+
+	// 3. Check input str
+	int checkInput();
+
+	//could also make a run function
+	string run();
+
+	//setter (defined in class)
+	void setStrInput(string data){
+		input = data;
+	}
+	//getter (defined in class)
+	string getStrInput(){
+		return input;
+	}
+	
+};
+
+#endif 
