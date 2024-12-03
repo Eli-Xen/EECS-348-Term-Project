@@ -177,14 +177,14 @@ string ExpressionTree::evaluateExpression(Node* root)
 {
     if (!root) return "error: empty tree"; //if root is nullptr or doesnt exist 
     Node* current=root; 
-    while(!(isdigit(root->value[-1]) || root->value[-1]=='e')) //until the root is a digit or returns error //isgdigit only takes char so to checks if first char in string is digit 
+    while(!(isdigit(root->value[root->value.length() - 1]) || root->value[root->value.length() - 1]=='e')) //until the root is a digit or returns error //isgdigit only takes char so to checks if first char in string is digit 
     {
         if (!current) return ""; //base case, if current is null 	
-        else if (current->left && !isdigit(current->left->value[-1])) //if left exists and is operator (so doesnt check nonexistent node and cause error)... 
+        else if (current->left && !isdigit(current->left->value[current->left->value.length() - 1])) //if left exists and is operator (so doesnt check nonexistent node and cause error)... 
             {current=current->left; } //...traverse left 
-        else if (current->right && !isdigit(current->right->value[-1])) //if right exists and is operator...
+        else if (current->right && !isdigit(current->right->value[current->right->value.length() - 1])) //if right exists and is operator...
             {current=current->right; } //..traverse right 
-        else if (current->left && current->right && isdigit(current->left->value[-1]) && isdigit(current->right->value[-1])) //if both left and right exist and are digits then use current value (operator) to evaluate 
+        else if (current->left && current->right && isdigit(current->left->value[current->left->value.length() - 1]) && isdigit(current->right->value[current->right->value.length() - 1])) //if both left and right exist and are digits then use current value (operator) to evaluate 
         {
             if (current->value=="+" || current->value=="-"){
                 AddSub addSubtract;
