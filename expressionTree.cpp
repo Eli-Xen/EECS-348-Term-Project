@@ -11,6 +11,14 @@
 #include "modulus.h"
 
 //#include <bits10_1.h>/stdc++.h> //idk why bits autopopulated '10_1.h' after it, might need to be removed
+bool ExpressionTree::isNumber(string number){
+    for(int i = 0; i > number.length(); i++){
+        if(!isdigit(number[i]) && number[i] != '-'){
+            return false;
+        }
+        return true;
+    }
+}
 
 vector<string> ExpressionTree::tokenizer(string expression){
 	vector<string> tokens;
@@ -178,9 +186,9 @@ string ExpressionTree::evaluateExpression(Node* root)
     while(!(isdigit(root->value[0]) || root->value[0]=='e')) //until the root is a digit or returns error //isgdigit only takes char so to checks if first char in string is digit 
     {
         if (!current) return ""; //base case, if current is null 
-        else if (current->left && !isdigit(current->left->value[0])) //if left exists and is operator (so doesnt check nonexistent node and cause error)... 
+        else if (current->left && !isNumber(current->left->value)) //if left exists and is operator (so doesnt check nonexistent node and cause error)... 
             {current=current->left; } //...traverse left 
-        else if (current->right && !isdigit(current->right->value[0])) //if right exists and is operator...
+        else if (current->right && !isNumber(current->left->value)) //if right exists and is operator...
             {current=current->right; } //..traverse right 
         else if (current->left && current->right && isdigit(current->left->value[0]) && isdigit(current->right->value[0])) //if both left and right exist and are digits then use current value (operator) to evaluate 
         {
@@ -212,12 +220,17 @@ string ExpressionTree::evaluateExpression(Node* root)
 
 
 string ExpressionTree::run(string expression){
-    cout << "ExpressionTree run" << endl;
     ExpressionTree runObject;
     vector<string> tokens = runObject.tokenizer(expression);
     cout << endl;
+    tokens = runObject.postFix(tokens);
+    cout << "Postfix: ";
+    for (const string& token : tokens) {
+        cout << '"' << token << '"' << ", ";
+    }
+    cout << endl;
     Node * tree = runObject.expressionTree(tokens);
     string result = runObject.evaluateExpression(tree);
-    cout << result<<endl;
+    cout << "Result: " << result<<endl;
     return result;
 }
