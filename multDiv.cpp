@@ -13,7 +13,7 @@ string MultDiv::evalMultDiv(string left, string operation, string right) {
         return to_string(double_left * double_right); // simple mult.
     } else if (operation == "/") {
         if (double_right == 0) { //Error for dividing by zero
-            cout << "Error: Division by zero is not allowed." << endl;
+            cout << "Division by zero is not allowed." << endl;
             return "error";
         }
         return to_string(double_left / double_right); //simple division
