@@ -25,6 +25,11 @@ private:
 	vector<string> postfix; //vector that holds postfix toekns expression after postfix runs 
 	Node* root; //vector expressionTree runs 
     string final; 
+
+	//void visualizeTree(Node* root);
+    //void buildTreeVisualization(Node* root, std::string& result, std::string prefix = "", bool isLeft = false);
+
+
 public:
     string run(string expression);
 	//Method to check if a char is an operator
@@ -34,7 +39,7 @@ public:
 	vector<string> cleanToken(vector<string> &tokens);
 	vector<string> postFix(const vector<string>& tokens); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
 	Node* expressionTree(const vector<string>& postfix); 
-    	string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
+    string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
 };
 
 

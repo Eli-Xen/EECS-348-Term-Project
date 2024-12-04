@@ -21,7 +21,8 @@ string AddSub::evalAddSub(string left, string operation, string right){
     } //if something goes wrong, an error will be printed to cout, and the function will return -1 
     catch (...) {
         cout << "Error arose within AddSub, expression that was being validated was " << left << operation << right << endl;
-        return "error";
+        return "error: AddSUbtract catch";
     }
+    return "error: AddSubtract"; //this is to clear warning "control reaches end of non-void function" for function ending without clear return 
 }
 

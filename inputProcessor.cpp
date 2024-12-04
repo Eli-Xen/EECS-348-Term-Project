@@ -11,21 +11,17 @@ string InputProcessor::run(){
 	int check = checkInput();
 	cout << check;
 	switch (check) {
-		case -1:
-			//this means user wants to quit: returns empty str
+		case -1: //this means user wants to quit: returns empty str
 			return "";
 			break;
-		case 0:
-			//validation was successful
+		case 0: //validation was successful
 			return getStrInput();
 			break;
-		case 1:
-			//error occurred
-			//maybe send something to std::err??
-			return "input error";
+		case 1: //error occurred, maybe send something to std::err??
+			return "error: input error or invalid input";
 			break;
 	}
-
+	return "error: inputProcessor::run()"; //this is to clear warning "control reaches end of non-void function" for function ending without clear return 
 }
 
 void InputProcessor::getInput(){

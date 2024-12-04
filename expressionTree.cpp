@@ -10,7 +10,7 @@
 #include "expo.h"
 #include "modulus.h"
 
-//#include <bits10_1.h>/stdc++.h> //idk why bits autopopulated '10_1.h' after it, might need to be removed
+//#include <iomanip>
 
 
 vector<string> ExpressionTree::tokenizer(string expression){
@@ -174,10 +174,15 @@ Node* ExpressionTree::expressionTree(const vector<string>& postfix) //needs to r
 }
 
 string ExpressionTree::evaluateExpression(Node* root) 
-
 {
     if (!root) return "error: empty tree"; //if root is nullptr or doesnt exist 
     Node* current=root; 
+
+
+    //cout << "Expression tree visualization: " << endl;
+    //visualizeTree(root);
+
+
     while(!(isdigit(root->value[root->value.length() - 1]) || root->value[root->value.length() - 1]=='e')) //until the root is a digit or returns error //isgdigit only takes char so to checks if first char in string is digit 
     {
         if (!current) return ""; //base case, if current is null 	
@@ -187,6 +192,7 @@ string ExpressionTree::evaluateExpression(Node* root)
             {current=current->right; } //..traverse right 
         else if (current->left && current->right && isdigit(current->left->value[current->left->value.length() - 1]) && isdigit(current->right->value[current->right->value.length() - 1])) //if both left and right exist and are digits then use current value (operator) to evaluate 
         {
+            cout << "current token: " << current->value << endl; 
             if (current->value=="+" || current->value=="-"){
                 AddSub addSubtract;
                 current->value=addSubtract.evalAddSub(current->left->value, current->value, current->right->value);
@@ -204,10 +210,17 @@ string ExpressionTree::evaluateExpression(Node* root)
                 current->value=expo.evlExponent(current->left->value, current->right->value); 
             }
             else
-                return "error: unknown operand"; 
+                return "error: unknown operand in ExpressionTree::evaluateExpression()"; 
+        
+            //left and right children are deleted so that they dont mess up the tree 
+            delete current->left;
+            delete current->right;
+            current->left = nullptr;
+            current->right = nullptr; 
+            current = root; //restart traversal so that current isnt stuck at node we just evaluated 
         }
         else return "error: evaluateExpression"; //somethings really bad
-            
+        //visualizeTree(root);    
     } 
 
 	return root->value;
