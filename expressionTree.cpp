@@ -102,12 +102,12 @@ vector<string> ExpressionTree::cleanToken(vector<string> &tokens){
 
 vector<string> ExpressionTree::postFix(const vector<string>& tokens) //passes vector by referance but uses const to avoid changes 
 {
-	vector<string> postfix; //vector that stores result 
+    vector<string> postfix; //vector that stores result 
     stack<string> stck;
     
-    //checks token if number, all_of() allows multidigit nums to be used
+    //Check if the token is a number or a negative number
     for (const string& token : tokens) {
-        if (all_of(token.begin(), token.end(), ::isdigit)) {
+        if (isdigit(token[0]) || (token[0] == '-' && token.length() > 1 && isdigit(token[1]))) {
             postfix.push_back(token);
         }
         //operation for opening parenthesis
@@ -127,21 +127,22 @@ vector<string> ExpressionTree::postFix(const vector<string>& tokens) //passes ve
         }
         //operation if token is operator
         else {
-            while (!stck.empty() && stck.top() != "(") {
+            while (!stck.empty() && stck.top() != "(" &&
+                   ((token == "+" || token == "-") || 
+                    (token == "*" || token == "/") && (stck.top() == "*" || stck.top() == "/" || stck.top() == "**") || 
+                    (token == "**" && stck.top() == "**"))) {
                 postfix.push_back(stck.top());
                 stck.pop();
             }
-            stck.push(token);
+            stck.push(token); // Push the current operator
         }
-
     }
     //pop remaining
     while (!stck.empty()) {
         postfix.push_back(stck.top());
         stck.pop();
     }
-
-	return postfix; //return vector directly 
+    return postfix; //return vector directly 
 }
 
 
