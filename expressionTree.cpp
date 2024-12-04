@@ -84,8 +84,10 @@ vector<string> ExpressionTree::cleanToken(vector<string> &tokens){
         return tokens;
     }
     if(isOperator(tokens[tokens.size()-1])){
-        //Throw error
-        //Not sure how we want to handle this yet
+        cout << "Expression invalid. Expression cannot end with operator.";
+        vector<string> v;
+        v.push_back("!");
+        return v;
     }
     int i = 0;
     //Looks for repeated operations in the tokens
@@ -95,6 +97,20 @@ vector<string> ExpressionTree::cleanToken(vector<string> &tokens){
             tokens.erase(tokens.begin());//Removes the plus 
         }
         i++;
+    }
+        int j = 0;
+        while(j < tokens.size()){
+            if(j-1 >= 0 && tokens[j] == "(" && tokens[j-1] == "-"){
+                if(j-2 >= 0 && !isdigit(tokens[j-2][tokens[j-2].size() -1])){
+                    tokens[j-1] = "-1";
+                    tokens.insert(tokens.begin() + j, "*");
+                }
+                else if(j-2 < 0){
+                    tokens[j-1] = "-1";
+                    tokens.insert(tokens.begin() + j, "*");                   
+                }
+            }
+            j++;
     }
     return tokens;
 }
