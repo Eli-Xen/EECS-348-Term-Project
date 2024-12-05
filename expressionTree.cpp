@@ -238,10 +238,8 @@ string ExpressionTree::cleanOutput(string unclean) {
 		}
 	}
 	if (unclean[unclean.length() - 1] == '.'){ //if number is something like 5. this code is janky but it works
-		cout << "ran" << '\n';
 		unclean = unclean.substr(0, unclean.length() - 1);
 	}
-	cout << unclean << '\n';
 	return unclean;
 }
 
