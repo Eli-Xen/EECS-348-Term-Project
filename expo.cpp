@@ -17,7 +17,7 @@ string Expo::evlExponent(string strBase, string strPower) {
     for(int i=0; i<power; i++)
         {result*=base;}
     if (neg>0) //happens if power<0 
-        {result=(1.0/base);} //divides 1 by the result to account for netaive
+        {result= 1.0/result;} //divides 1 by the result to account for netaive
     return to_string(result); 
     
 }
