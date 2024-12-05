@@ -40,6 +40,7 @@ public:
 	vector<string> postFix(const vector<string>& tokens); //call to expression Eval and incorporation back into expression eliminate parenthesis in fullExpression, could be incorporated into countParenthesis and just make evalParenthesis 
 	Node* expressionTree(const vector<string>& postfix); 
     string evaluateExpression(Node* root); //evaluates expression tree to a single string return 
+	string cleanOutput(string unclean); //converts double to int if possible; otherwise, rounds double to 3 decimal places
 };
 
 

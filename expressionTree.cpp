@@ -84,10 +84,8 @@ vector<string> ExpressionTree::cleanToken(vector<string> &tokens){
         return tokens;
     }
     if(isOperator(tokens[tokens.size()-1])){
-        cout << "Expression invalid. Expression cannot end with operator.";
-        vector<string> v;
-        v.push_back("!");
-        return v;
+        //Throw error
+        //Not sure how we want to handle this yet
     }
     int i = 0;
     //Looks for repeated operations in the tokens
@@ -97,20 +95,6 @@ vector<string> ExpressionTree::cleanToken(vector<string> &tokens){
             tokens.erase(tokens.begin());//Removes the plus 
         }
         i++;
-    }
-        int j = 0;
-        while(j < tokens.size()){
-            if(j-1 >= 0 && tokens[j] == "(" && tokens[j-1] == "-"){
-                if(j-2 >= 0 && !isdigit(tokens[j-2][tokens[j-2].size() -1])){
-                    tokens[j-1] = "-1";
-                    tokens.insert(tokens.begin() + j, "*");
-                }
-                else if(j-2 < 0){
-                    tokens[j-1] = "-1";
-                    tokens.insert(tokens.begin() + j, "*");                   
-                }
-            }
-            j++;
     }
     return tokens;
 }
@@ -238,10 +222,28 @@ string ExpressionTree::evaluateExpression(Node* root)
         else return "error: evaluateExpression"; //somethings really bad
         //visualizeTree(root);    
     } 
-
-	return root->value;
+	string cleaned_output = cleanOutput(root->value);
+	return cleaned_output;
 }
 
+string ExpressionTree::cleanOutput(string unclean) {
+	int decimal = unclean.find(".");
+	int last_index = unclean.length() - 1;
+	for (int i = last_index; i > decimal; i--) { // deletes all trailing zeros
+		if (unclean[i] == '0') {
+			unclean = unclean.substr(0,i);
+		//if it hit a non-zero...
+		} else {
+			break;
+		}
+	}
+	if (unclean[unclean.length() - 1] == '.'){ //if number is something like 5. this code is janky but it works
+		cout << "ran" << '\n';
+		unclean = unclean.substr(0, unclean.length() - 1);
+	}
+	cout << unclean << '\n';
+	return unclean;
+}
 
 string ExpressionTree::run(string expression){
     ExpressionTree runObject;
