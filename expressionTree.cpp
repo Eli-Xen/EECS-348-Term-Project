@@ -95,6 +95,20 @@ vector<string> ExpressionTree::cleanToken(vector<string> &tokens){
             tokens.erase(tokens.begin());//Removes the plus 
         }
         i++;
+        int j = 0;
+        while(j < tokens.size()){
+            if(j-1 >= 0 && tokens[j] == "(" && tokens[j-1] == "-"){
+                if(j-2 >= 0 && !isdigit(tokens[j-2][tokens[j-2].size() -1])){
+                    tokens[j-1] = "-1";
+                    tokens.insert(tokens.begin() + j, "*");
+                }
+                else if(j-2 < 0){
+                    tokens[j-1] = "-1";
+                    tokens.insert(tokens.begin() + j, "*");                   
+                }
+            }
+            j++;
+        }
     }
     return tokens;
 }
