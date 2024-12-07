@@ -143,7 +143,7 @@ vector<string> ExpressionTree::postFix(const vector<string>& tokens) //passes ve
         else {
             while (!stck.empty() && stck.top() != "(" &&
                    ((token == "+" || token == "-") || 
-                    (token == "*" || token == "/") && (stck.top() == "*" || stck.top() == "/" || stck.top() == "**") || 
+                    (token == "*" || token == "/" || token == "%") && (stck.top() == "*" || stck.top() == "/" || stck.top() == "**") || 
                     (token == "**" && stck.top() == "**"))) {
                 postfix.push_back(stck.top());
                 stck.pop();
