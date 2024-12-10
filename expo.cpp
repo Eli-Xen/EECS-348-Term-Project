@@ -8,6 +8,17 @@ string Expo::evlExponent(string strBase, string strPower) {
 //takes in operand and left (base) and right (exponent) 
     //loop that multiplies base by iteself exponent amount of times 
     //acommodate for negative exponents: solve as normal loop and then divide 1 by that result then return that 
+    bool decimal = false;
+    for(int i = 0; i < strPower.size() -1; i++){
+        if (decimal == true){
+            if (strPower[i] != '0'){
+                return "error: Fractional exponents are not allowed.";
+            }
+        }
+        if(strPower[i] == '.'){
+            decimal = true;
+        }
+    }
     double base=stod(strBase);
     int power=stoi(strPower); //assumes power is pos/neg int 
     int neg=0; //tracks of power is negative, initially set to 0

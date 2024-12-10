@@ -27,7 +27,7 @@ vector<string> ExpressionTree::tokenizer(string expression){
             //If it is we can add it to our current token
             currentToken += exp[i];
         }
-        else if(exp[i] == '+' && (i-1 ) >= 0 && exp[i-1] == '('){
+        else if(exp[i] == '+' && (i-1 ) >= 0 && (exp[i-1] == '(' && !isdigit(exp[i-1]))){
             continue;
         }
         else if (exp[i] == '(' || exp[i] == ')'){
@@ -98,7 +98,7 @@ vector<string> ExpressionTree::cleanToken(vector<string> &tokens){
         int j = 0;
         while(j < tokens.size()){
             if(j-1 >= 0 && tokens[j] == "(" && tokens[j-1] == "-"){
-                if(j-2 >= 0 && !isdigit(tokens[j-2][tokens[j-2].size() -1])){
+                if(j-2 >= 0 && !isdigit(tokens[j-2][tokens[j-2].size() -1]) && tokens[j-2] != ")"){
                     tokens[j-1] = "-1";
                     tokens.insert(tokens.begin() + j, "*");
                 }
@@ -117,8 +117,7 @@ vector<string> ExpressionTree::cleanToken(vector<string> &tokens){
 vector<string> ExpressionTree::postFix(const vector<string>& tokens) //passes vector by referance but uses const to avoid changes 
 {
     vector<string> postfix; //vector that stores result 
-    stack<string> stck;
-    
+    stack<string> stck;    
     //Check if the token is a number or a negative number
     for (const string& token : tokens) {
         if (isdigit(token[0]) || (token[0] == '-' && token.length() > 1 && isdigit(token[1]))) {
@@ -143,7 +142,7 @@ vector<string> ExpressionTree::postFix(const vector<string>& tokens) //passes ve
         else {
             while (!stck.empty() && stck.top() != "(" &&
                    ((token == "+" || token == "-") || 
-                    (token == "*" || token == "/") && (stck.top() == "*" || stck.top() == "/" || stck.top() == "**") || 
+                    (token == "*" || token == "/" || token == "%") && (stck.top() == "*" || stck.top() == "/" || stck.top() == "**") || 
                     (token == "**" && stck.top() == "**"))) {
                 postfix.push_back(stck.top());
                 stck.pop();
@@ -199,6 +198,9 @@ string ExpressionTree::evaluateExpression(Node* root)
 
     while(!(isdigit(root->value[root->value.length() - 1]) || root->value[root->value.length() - 1]=='e')) //until the root is a digit or returns error //isgdigit only takes char so to checks if first char in string is digit 
     {
+        if (current ->value.size() > 0 && current->value[0] == 'e'){
+            return current->value;
+        }
         if (!current) return ""; //base case, if current is null 	
         else if (current->left && !isdigit(current->left->value[current->left->value.length() - 1])) //if left exists and is operator (so doesnt check nonexistent node and cause error)... 
             {current=current->left; } //...traverse left 
@@ -206,7 +208,7 @@ string ExpressionTree::evaluateExpression(Node* root)
             {current=current->right; } //..traverse right 
         else if (current->left && current->right && isdigit(current->left->value[current->left->value.length() - 1]) && isdigit(current->right->value[current->right->value.length() - 1])) //if both left and right exist and are digits then use current value (operator) to evaluate 
         {
-            cout << "current token: " << current->value << endl; 
+            // cout << "current token: " << current->value << endl; 
             if (current->value=="+" || current->value=="-"){
                 AddSub addSubtract;
                 current->value=addSubtract.evalAddSub(current->left->value, current->value, current->right->value);
@@ -262,13 +264,12 @@ string ExpressionTree::run(string expression){
     vector<string> tokens = runObject.tokenizer(expression);
     cout << endl;
     tokens = runObject.postFix(tokens);
-    cout << "Postfix: ";
-    for (const string& token : tokens) {
-        cout << '"' << token << '"' << ", ";
-    }
-    cout << endl;
+    // cout << "Postfix: ";
+    // for (const string& token : tokens) {
+    //     cout << '"' << token << '"' << ", ";
+    // }
+    // cout << endl;
     Node * tree = runObject.expressionTree(tokens);
     string result = runObject.evaluateExpression(tree);
-    cout << "Result: " << result<<endl;
     return result;
 }

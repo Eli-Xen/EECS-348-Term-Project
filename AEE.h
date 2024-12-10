@@ -15,7 +15,7 @@ public:
   AEE() : cleanInput("") {} 
 	//makes first call to input processor class
 	string callInput(); 
-	string callParenthesis(string expression); 
+	string callTree(string expression); 
 	//other functions for parenthesis class and other decision making (run) 
 
 	//Setters for string varables

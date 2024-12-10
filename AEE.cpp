@@ -16,24 +16,38 @@ string AEE::callInput() //edit this to call class InputProcessor
 	return expression; 
 }
 
-string AEE::callParenthesis(string expression) //edit this to call class InputProcessor 
+string AEE::callTree(string expression) //edit this to call class InputProcessor 
 {
-	ExpressionTree tree;//creates object of parenthesis handler 
-	string express = tree.run(expression); //keeps track of matching parenthesis, returns to main sub-expressions that need to be evaluated
-	//idea is to interact between parenthesis and main to evaulate each sub-expression one at a time and update the expression 
-	return express; 
+	ExpressionTree tree;//creates object of Tree file  
+	string result = tree.run(expression); //this runs tokenizer, reorganizes postfix into tokens, makes a tree out of tokens, and evaluates the tree 
+	return result; 
 }
 
 int main()
 {
 	AEE start; //starts the program 
-	//start.setCleanInput(start.callInput()); 
-	while(true){
-		string input;
-		cout << "Enter an arithmetic expression: ";
-		getline(cin, input);
-		//start.callParenthesis(start.getCleanInput()); 
-		start.callParenthesis(input); 
+	while(true)
+	{
+		// string input;
+		// cout << "Enter an arithmetic expression: ";
+		// getline(cin, input);
+		string processedInput=start.callInput(); 
+		// cout << "callInput finished" << endl;
+		if (processedInput=="") //if callInput returns empty string then that means user whats to quit 
+		{
+			cout << "you quit" << endl; 
+			break; 
+		}
+		else if (processedInput.size() > 2 && processedInput[0]=='e' && processedInput[1]=='r' && processedInput[2]=='r'){
+			cout << processedInput << endl; 
+			continue;
+		}
+		string result = start.callTree(processedInput); 
+		if (result.size() > 2 && result[0]=='e' && result[1]=='r' && result[2]=='r'){
+			cout << result << endl; 
+			continue;
+		}
+		cout << "Result: " << result << endl << endl;
 	}
 	return 0; 
 }
