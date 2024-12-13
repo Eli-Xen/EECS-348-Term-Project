@@ -61,3 +61,67 @@ Small edits were made to the SDP; a new version needs to be pushed to the repo.
 2.3/2.1- are users human?
 Daniel reminded members that midterms are coming up, so completing the SRS may require stricter deadlines due to the frantic nature of midterms and the shortened timespan to complete the SRS.
 Members discussed Big Jay and free food in front of Wescoe. It was decided to adjourn early to scope out free food (team-building activity).
+
+10/8 Minutes
+Met in-person at Anschutz Library.
+Tyler, Lillian, Johney, Daniel, and Eliza were present.
+Max was not present.
+Meeting agenda: go over section 2 in order to better complete/assign portions of section 3.
+Formatting of section 2 was fixed.
+Section 3.1 must be completed by all members before Friday’s meeting, since the other section 3 parts rely on 3.1’s completion.
+
+10/17 Minutes
+Met in-person at Anschutz Library.
+Tyler, Lillian, Johney, Daniel, and Eliza were present.
+Max was not present.
+Meeting agenda: sections 3.2 and 4 were finished; section 3.1 was read
+Members discussed GCC, LLMs.
+Section 3.3 was completed. 
+
+10/24 Minutes
+Met in-person at Anschutz Library.
+Present: Tyler, Lillian, Johney, Daniel, Eliza.
+Absent: Max.
+The team discussed the AEE and its implementation using expression trees. Lillian worked on the infix-to-postfix conversion, and Tyler and Johney discussed tree navigation. Eliza added validation for negative numbers. Members reviewed Discrete Structures concepts related to trees and graphs, which would aid the AEE.
+
+10/31 Minutes
+Met in-person at Anschutz Library.
+Present: Tyler, Lillian, Johney, Daniel, Eliza.
+Absent: Max.
+The group finalized the AEE approach, focusing on parsing expressions and handling parentheses. Tyler and Lillian worked on postfix conversion and handling operators. Johney ran tests for unary operators, and Eliza addressed errors with negative numbers. 
+
+11/7 Minutes
+Met in-person at Anschutz Library.
+Present: Tyler, Lillian, Johney, Daniel, Eliza.
+Absent: Max.
+The group addressed bugs in the AEE, particularly with negative numbers, and made adjustments to the expression tree structure. Lillian refined the infix-to-postfix method, and Tyler and Johney improved the handling of unary operators. 
+
+11/14 Minutes
+Met in-person at Anschutz Library.
+Present: Tyler, Lillian, Johney, Daniel, Eliza.
+Absent: Max.
+The team worked on finalizing the AEE, addressing segmentation faults and memory management issues. Tyler and Eliza improved the logic for tree construction and postfix evaluation. Eliza added edge case handling for complex expressions. 
+
+11/21 Minutes
+Met on Discord.
+Present: Tyler, Lillian, Johney, Daniel, Eliza, Max.
+The group focused on testing the AEE, ensuring compatibility with KU EECS servers and resolving issues with unexpected symbols. Documents 4 and 5 were discussed, with Eliza pushing the latest updates to GitHub.
+
+11/28 Minutes
+Met on Discord.
+Present: Tyler, Lillian, Johney, Daniel, Eliza, Max.
+The team completed final testing of the AEE and ensured all edge cases were handled. Members ran compatibility tests on the KU EECS servers. Members discussed the project wrap-up and upcoming submission.
+
+12/5 Minutes
+Met on Discord.
+Present: Tyler, Lillian, Johney, Daniel, Eliza, Max.
+The group performed final checks on the AEE and confirmed everything was functioning correctly. Eliza coordinated the final pull request and ensured all documentation was up to date. The team prepared for submission.
+
+12/10 Minutes
+Met in-person at Anschutz Library.
+Present: Tyler, Lillian, Johney, Daniel, Eliza.
+Absent: Max.
+The team reviewed the completed project, confirmed all features were functional, and submitted the final version to the course repository. Documents 4 and 5 were finalized and pushed to GitHub. 
+
+
+
